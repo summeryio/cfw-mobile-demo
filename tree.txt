@@ -1,0 +1,51 @@
+//  scss编译命令: 
+    sass style.scss:style.min.css --style compressed --sourcemap=none // 单独编译压缩css
+    sass --watch style.scss:style.min.css --style compressed --sourcemap=none // 监听css文件编译
+
+    // 命令一般用这个
+    sass --watch css:css --style compressed --sourcemap=none --no-cache // 监听整个目录
+
+.移动端目录文件树结构
+├── css
+│   ├── common.scss         // 公共模块
+│   ├── grid.scss           // 栅格样式
+│   ├── mixin.scss          // 定义全局样式
+│   ├── reset.scss          // 清除默认样式
+│   ├── style.css           // 最终输出到网站的全部样式
+│   └── style.scss          // 样式表
+│
+├── images                  // 图片文件夹
+│
+├── js
+│   ├── common.js           // 公共js
+│   ├── bscroll.min.js      // 下拉列表滑动
+│   ├── dropload.min.js     // 列表数据上拉加载js
+│   ├── fastclick.min.js    // 去除click延迟
+│   ├── lazyload.js         // 图片懒加载
+│   ├── mobile.js           // 设置网站根元素，rem布局:  100px = 1rem
+│   ├── swiper.min.js       // 轮播库
+│   ├── touch.js            // zepto 事件js
+│   ├── util.js             // 自定义工具函数js
+│   └── zepto.min.js        // 移动端js库
+│
+├── template                // 公共html模块
+│   ├── header.html         // 头部
+│   ├── footer.html         // 底部
+│   ├── head.html           // head引入文件
+│   ├── house_filter.html   // 楼盘搜索页
+│   ├── recommend-list.html // 推荐楼盘列表
+│   ├── script.html         // body底部引入文件
+│   └── search_header.html  // 楼盘列表/地图页 头部
+│
+├── house_detail            // 楼盘详情，单独放一个文件夹
+│
+├── index.html              // 首页
+├── haozhai.html            // 豪宅列表
+├── house.html              // 楼盘列表
+├── lookgroup.html          // 看房团列表
+├── lookgroup_article.html  // 看房团详情
+├── map.html                // 地图页
+├── news.html               // 新闻列表
+├── news_article.html       // 新闻详情
+├── tuangou.html            // 团购列表
+└── tuangou_article.html    // 团购详情

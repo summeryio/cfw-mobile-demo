@@ -1,0 +1,93 @@
+// $highColor: #f13745; // 高亮颜色
+// $lightColor: #999; // 淡灰色
+// $lr-mg: .1rem;
+
+// 字体大小
+@mixin f_lg() {font-size: .36rem;}
+@mixin f_md() {font-size: .32rem;}
+@mixin f_sm() {font-size: .28rem;}
+@mixin f_xs() {font-size: .24rem;}
+@mixin f_bold() {font-weight: bold;}
+
+// 字体颜色
+@mixin c_deep() {color: #333333;}
+@mixin c_mid() {color: #666666;}
+@mixin c_light() {color: #999999;}
+@mixin c_blue() {color: #0099eb;}
+@mixin c_orange() {color: #fe7240;}
+@mixin c_white() {color: #ffffff;}
+@mixin c_red() {color: #ff5849;}
+
+
+// 背景颜色
+@mixin bc_orange() {background: #fe7240;}
+@mixin bc_white() {background: #ffffff;}
+@mixin bc_blue() {background: #0099eb;}
+@mixin bc_gray() {background: #f4f4f4;}
+@mixin bc_red() {background: #ff5849;}
+
+// 盒子阴影
+@mixin box_sd() {box-shadow: 0 1px .2rem rgba(100,100,100,.2);}
+
+// 圆角
+@mixin br_lg() {border-radius: 50%;}
+@mixin br_md() {border-radius: .4rem;}
+@mixin br_sm() {border-radius: .1rem;}
+
+
+// 按钮
+@mixin button($pd_t: .1rem, $pd_l: .2rem, $color: #ffffff, $bgColor: #0099eb) {
+    padding: $pd_t $pd_l;
+    text-align: center;
+    color: $color;
+    background-color: $bgColor;
+    @include br_sm();
+}
+@mixin input($width: 100%) {
+    width: $width;
+    padding: .05rem .2rem;
+    border: 1px solid #999;
+    @include br_sm();
+}
+
+
+
+// 其他
+@mixin fl {
+    float: left;
+}
+@mixin fr {
+    float: right;
+}
+@mixin border_b() {
+    border-bottom: 1px solid #eeeeee;
+}
+@mixin border_t() {
+    border-top: 1px solid #eeeeee;
+}
+@mixin clearfix() {
+    &:before,
+    &:after {
+      content: " ";
+      display: table;
+    }
+    &:after {
+      clear: both;
+    }
+}
+@mixin t_hide($width: 100%) {
+    width: $width;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+@mixin box_sizing($boxmodel) {
+    -webkit-box-sizing: $boxmodel;
+       -moz-box-sizing: $boxmodel;
+            box-sizing: $boxmodel;
+}
+@mixin dflex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<title>海南<?=$category?>新楼盘-海南<?=$category?>房价-<?=WEB_NAME?></title>
+	<meta name="keywords" content="海南房价,海南新楼盘,海南房价走势--买房网">
+	<meta name="description" content="海南<?=$category?>新楼盘频道为购买者提供海南<?=$category?>所有新楼盘项目介绍、楼盘地理位置、<?=$category?>楼盘动态及<?=$category?>楼盘优惠政策等等一系列新房介绍，让您轻松网上了解海南楼盘。咨询电话：400-837-6599">
+	
+	<?php require('/tpl/wap2020/template/head.html');?>
+</head>
+<body>
+		
+	<div class="app" id="house">
+		<?php require('/tpl/wap2020/template/search_header.html');?>
+		<div id="category_nav">
+			<ul class="nav">
+				<li>
+					<?php
+							if($c1==0){echo '全部区域';}else{
+								foreach($cf_city as $val111){    
+								if($val111['id']==$c1){echo $val111['title'];break;}                                          
+							}
+							}
+							?>
+				</li>
+				<li>
+					<?php
+							if($c2==0){echo '全部价格';}else{                           
+							foreach($cf_house as $val){
+								if($val['id']==49){
+									foreach($val['subdir'] as $vs){
+										if($c2==$vs['id']){echo $vs['title'];break;}                                        
+									}
+									break;
+								}
+							}
+							}
+							?>
+				</li>
+				<li>
+					<?php
+							if($c5==0){echo '全部特色';}else{                           
+							foreach($mcf_category[1]['subdir'] as $val){
+										if($c5==$val['id']){echo $val['title'];break;}                                        
+									
+							}
+							}
+							?>
+				</li>
+			</ul>
+			<div class="cont-wrap bs-wrapper">
+				<ul class="cont">
+					<li>
+						<a target="_self" href="/house/0-<?=($c2.'-'.$c3.'-'.$c4.'-'.$c5.'-'.$c6)?>/">全部</a>
+						<?php 
+							foreach ($cf_city as $key=>  $val) {								
+								echo '<a href="/house/'.$val['id'].'-'.$c2.'-'.$c3.'-'.$c4.'-'.$c5.'-'.$c6.'/">'.$val['title'].'</a>';					
+							}
+						?>
+					</li>
+					<li>
+						<a target="_self" href="/house/<?=($c1.'-0-'.$c3.'-'.$c4.'-'.$c5.'-'.$c6)?>/">全部</a>
+						<?php foreach($cf_house as $val){
+							if($val['id']==49){
+								foreach($val['subdir'] as $vs){
+									echo '<a href="/house/'.$c1.'-'.$vs['id'].'-'.$c3.'-'.$c4.'-'.$c5.'-'.$c6.'/">',$vs['title'],'</a>';
+								}
+							}
+						}?>
+					</li>
+					<li>
+						<a target="_self" href="/house/<?=($c1.'-'.$c2.'-'.$c3.'-'.$c4.'-0-'.$c6)?>/">全部</a>
+						<?php foreach($mcf_category[1]['subdir']  as $val){	
+							echo '<a href="/house/'.$c1.'-'.$c2.'-'.$c3.'-'.$c4.'-'.$val['id'].'-'.$c6.'/"'.($c5==$vs['id']?' class="select"':'').'>',$val['title'],'</a>';									
+						}?>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="house-list">
+			<?php
+			if(is_array($listData['listData'])){ ?>
+			<div class="load-wrapper">
+				<ul class="list">
+					<?php
+					foreach($listData['listData'] as $key=>$val){ ?>
+					<li>
+						<a href="/house/<?=$val['id']?>.html" class="link" title="<?=$val['title']?>">
+							<div class="pic">
+								<img class="lazy" src="/tpl/wap2020/images/img_default.png" data-original="<?=WebFun::OssPic($val['pic'])?>" alt="<?=$val['title']?>" onerror="loadIMGErr(this)">
+								<?php
+								foreach($cf_city as $val111){
+									if($val111['id']==$val['cityid']){
+										echo '<span class="location">',$val111['title'],'</span>';
+										break;
+									}
+								};
+								?>
+							</div>
+							<div class="intro">
+								<h4><?=$val['title']?></h4>
+								<div class="price">
+									<span class="num">￥<i><?=$val['price']?></i>元/㎡</span>
+								</div>
+								<div class="label">
+									<?php
+										$i=1;
+										if($val['catid']!=''){
+											$tmp=explode(',',$val['catid']);
+											foreach($tmp as $vs1){
+												if($vs1!=''){
+													foreach($mcf_category[1]['subdir'] as $val111){
+														if($val111['id']==$vs1){echo  '<i>'.$val111['title'].'</i>';$i++;break;}
+													}
+													if($i==4) break;
+												}
+											}
+										}
+									?>
+								</div>
+								<?php 
+									if($val['sale_price']!="") echo '<p class="tip"><em class="em_l"></em><i>'.$val['sale_price'].'</i><em class="em_r"></em></p>';
+								?>
+							</div>
+						</a>
+						<a class="m-phone" href="tel:<?=Tels::wap($val['wap_phone'])?>" onclick="submitPhone(5, '<?=$val['wap_phone']?>', '楼盘列表：')">
+							<img src="/tpl/wap2020/images/phone.gif">免费
+						</a>
+					</li>
+					<?php }?> 
+				</ul>
+			</div>
+			<?php
+			}
+			else{
+				echo '<div class="empty-data">
+					<i class="iconfont icon-wushuju"></i>
+					<p> - 暂无数据 - </p>
+				</div>';
+			}?>
+		</div>
+		<?php require('/tpl/wap2020/template/footer.html');?>
+    </div>
+    
+    <?php require('/tpl/wap2020/template/house_filter.html');?>
+	
+	<?php require('/tpl/wap2020/template/script.html');?>
+	<script type="text/javascript" src="/tpl/wap2020/js/dropload.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/better-scroll@1.15.2/dist/bscroll.min.js"></script>
+	<script>window.BScroll || document.write('<script src="/tpl/wap2020/js/bscroll.min.js"><\/script>')</script>
+	<script>
+		var util = {
+			/**
+			 * 视图滑动并加载数据，添加懒加载
+			 * @param {pageCount} 数据的页数 
+			 * @param {path} 数据引用的路径  
+			 */
+			dropLoadData: function (pageCount, path, obj) {
+				var counter = 0;
+				var num = 10; // 每页展示几个
+				var pageStart = 2,pageEnd = 0;
+				var page=2;
+
+				$("img.lazy").lazyload({
+					threshold :100,
+					placeholder: '/tpl/wap2020/images/img_default.png'
+				});
+				
+					
+				// if(pageCount > 1) {
+					$('.load-wrapper').dropload({
+						scrollArea : window,
+						domDown : {
+							domClass   : 'dropload-down',
+							domRefresh : '<div class="dropload-refresh">↑上拉加载更多</div>',
+							domLoad    : '<div class="dropload-load"><span class="loading"></span>加载中...</div>',
+							domNoData  : '<div class="dropload-noData">- 我是有底线的 -</div>'
+						},
+						loadDownFn : function(me){
+							console.log('data')
+							var template = '';
+							counter++;
+							pageEnd = num * counter;
+							pageStart = pageEnd - num;
+
+							$.get("/src/inc/"+path+"",{'pages':page, 'c1': obj.c1, 'c2': obj.c2, 'c3': obj.c3, 'c4': obj.c4, 'c5': obj.c5, 'c6': obj.c6}, function(result){
+								if(result=='0'){
+									return;
+								}
+								template = result
+
+								if(page >= pageCount) {
+									me.lock();
+									me.noData();
+									return;
+								}
+								page=page+1;      
+							})
+
+							setTimeout(function(){
+								$('.load-wrapper .list').append(template);
+								$("img.lazy").lazyload({
+									threshold :100,
+									placeholder: '/tpl/wap2020/images/img_default.png'
+								});
+								// 每次数据加载完，必须重置
+								me.resetload();
+							},1000);
+						},
+						threshold : 50
+					});
+				// } else {
+				// 	console.log('no-data')
+				// 	$('.dropload-down').hide()
+				// }
+			}
+		}
+
+		
+		$(function () {
+            var BS_croll = new BScroll('.bs-wrapper', {
+				bounce: false,
+				click: true
+            })
+            
+            
+			// 点击显示下拉列表
+			var $category_nav = $('#category_nav')
+			var $m_mask = $('#m_mask')
+			
+			$(document).on('click', '#category_nav .nav li', function (ev) {
+				ev.stopPropagation()
+
+				if ($(this).hasClass('active')) {
+					$(this).removeClass('active')
+
+					$category_nav.find('.cont li').eq($(this).index()).removeClass('on')
+					$m_mask.hide()
+					$category_nav.find('.cont-wrap').hide()
+				} else {
+					$(this).addClass('active').siblings().removeClass('active')
+
+					$category_nav.find('.cont li').eq($(this).index()).addClass('on').siblings().removeClass('on')
+					$m_mask.show()
+					$category_nav.find('.cont-wrap').show()
+
+                    BS_croll.refresh()
+				}
+			})
+
+
+			// 数据加载
+			var dataCount = <?php echo count($listData['listData'] ); ?>;
+			var pageCount = <?php echo $listData['PageCount'] == '' ? 0 : $listData['PageCount']; ?>;
+
+			if (dataCount > 0 && pageCount > 1) {
+				util.dropLoadData(pageCount, 'get_house2018.php', {'c1':<?=$c1?>,'c2':<?=$c2?>,'c3':<?=$c3?>,'c4':<?=$c4?>,'c5':<?=$c5?>,'c6':<?=$c6?>})
+			}
+
+
+			// 显示搜索页
+			$(document).on('click', '#search_header .search', function () {
+				$('#house').hide()
+				$('#house_filter').show()
+			})
+			$(document).on('click', '#house_filter .back', function () {
+				$('#house').show()
+                $('#house_filter').hide()
+			})
+			
+			$(document).on('click', '#house_filter .input', function () {
+				$('#house_filter .input').trigger('focus')
+			})
+			
+			
+			var $loupan_serach = $('#house_filter .search')
+			var $search_input = $loupan_serach.find('.input')
+
+			$(document).on('click', '#house_filter .search', function () {
+				if ($search_input.val() != '') {
+					window.location.href = '/house/?key='+$search_input.val()+'&word_result=搜索'
+				}
+			})
+			$("#loupan_search").on('keypress', function(e) {
+				var keycode = e.keyCode;
+				if(keycode == '13' && $search_input.val() != '') {
+					e.preventDefault();
+					window.location.href = `/house/?key=${$search_input.val()}`
+				}
+			});
+		})
+	</script>
+
+</body>
+
+</html>

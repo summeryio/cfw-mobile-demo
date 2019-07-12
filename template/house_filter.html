@@ -1,0 +1,45 @@
+<div id="house_filter">
+    <div class="header">
+        <div class="back"><img src="/tpl/wap2019/images/icon_search.png"></div>
+        <div class="search">
+            <form id="loupan_search">
+                <input class="input" type="text" placeholder="请输入楼盘名称">
+                <a class="btn" href="javascript: void(0);"><i class="iconfont i icon-search"></i></a>
+            </form>
+        </div>
+    </div>
+    <div class="card">
+        <h4>热门筛选</h4>
+        <ul>
+            <?php
+            if(count($urls)>0){
+                foreach($urls as $val){
+                if($val['categoryid']==94){
+                echo '<li><a href="'.$val['urls'].'"><span>'.$val['title'].'</span></a></li>';
+            }}}?> 
+        </ul>
+    </div>
+    <div class="card">
+        <h4>价格筛选</h4>
+        <ul>
+            <?php foreach($cf_house as $val){
+                if($val['id']==49){
+                    foreach($val['subdir'] as $vs){
+                        echo '<li><a href="/house/0-'.$vs['id'].'-0-0-0-0/"><span>',$vs['title'],'</span></a></li>';
+                    }
+                }
+            }?>
+        </ul>
+    </div>
+    <div id="footer">
+        <a href="tel:089828355588" class="item1" rel="nofollow">     
+            <img src="/tpl/wap2019/images/footer_icon1.png"> 咨询售楼处
+        </a>   
+            <a class="item2" href="tel:089828355588">
+                    <img src="/tpl/wap2019/images/footer_icon2.png"> 政策咨询
+        </a>
+        <a href="http://swt.faakee.com/lr/chatpre.aspx?id=mkp91413261&amp;lng=cn&amp;r=&amp;rf1=&amp;rf2=&amp;p=http%3A//m.hnfc66.com/&amp;cid=30d0476762f04c64a3e03234d07ad7a3&amp;sid=2e3c6ef9706d472e83a10d34c6fd44c5" class="item3" rel="nofollow">
+            <img src="/tpl/wap2019/images/footer_icon3.png">购房咨询
+        </a>
+    </div>
+</div>

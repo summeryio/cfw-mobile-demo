@@ -1,0 +1,41 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="baidu-site-verification" content="">
+<meta name="theme-color" content="#ffffff">
+<meta name="format-detection" content="telphone=no, email=no">
+<link rel="dns-prefetch" href="http://m.lfw66.com/">
+<link rel="dns-prefetch" href="http://img1.0898cfw.com">
+<link rel="dns-prefetch" href="http://h.0898cfw.com">
+<link rel="shortcut icon" href="" type="image/x-icon">
+
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/zepto@1.2.0/dist/zepto.min.js" as="script">
+<link rel="preload" href="/tpl/wap2020/js/touch.js" as="script">
+<link rel="preload" href="/tpl/wap2020/js/lazyload.js" as="script">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@4.5.0/dist/js/swiper.min.js" as="script">
+<link rel="preload" href="/tpl/wap2020/js/common.js" as="script">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1235878_inoo7h7jiri.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@4.5.0/dist/css/swiper.min.css">
+<link href="/tpl/wap2020/css/style.css?_v=2019618001" rel="stylesheet">
+<script type="text/javascript" src="/tpl/wap2020/js/mobile.js"></script>
+<script type="text/javascript">
+    (function () {
+        if (typeof WeixinJSBridge == "object" && typeof WeixinJSBridge.invoke == "function") {
+            handleFontSize();
+        } else {
+            if (document.addEventListener) {
+                document.addEventListener("WeixinJSBridgeReady", handleFontSize, false);
+            } else if (document.attachEvent) {
+                document.attachEvent("WeixinJSBridgeReady", handleFontSize);
+                document.attachEvent("onWeixinJSBridgeReady", handleFontSize);
+            }
+        }
+        function handleFontSize() {
+            WeixinJSBridge.invoke('setFontSizeCallback', { 'fontSize': 0 });
+            WeixinJSBridge.on('menu:setfont', function () {
+                WeixinJSBridge.invoke('setFontSizeCallback', { 'fontSize': 0 });
+            });
+        }
+    })();
+</script>

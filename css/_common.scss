@@ -1,0 +1,724 @@
+// 顶部
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    z-index: 99;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: .96rem;
+    background-color: #fff;
+    box-shadow: 0px 1px .1rem 0px #ededed;
+
+    .icon-left, .icon-nav-extension {
+        font-size: .5rem;
+        // margin: 0 .2rem;
+        padding: .2rem;
+        color: #0674fb;
+    }
+    .icon-left {
+        font-size: .6rem;
+    }
+    .logo {
+        display: block;
+        height: 100%;
+        
+        img {
+            margin-top: 5%;
+            height: 70%;
+        }
+    }
+}
+.header-popup {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    // height: 100%;
+    background-color: #fff;
+
+    transform: translateY(-100%);
+    transition: transform .4s;
+    &.showing {
+        transform: translateY(10%);
+    }
+
+    .pop-nav {
+        padding: .3rem 0;
+
+        a {
+            margin-bottom: .4rem;
+            text-align: center;
+        }
+        span {
+            display: block;
+            width: .8rem;
+            height: .8rem;
+            line-height: .8rem;
+            margin: 0 auto .05rem;
+            border-radius: 50%;
+        }
+        i {
+            color: #fff;
+            font-size: .5rem;
+        }
+    }
+    .category {
+        overflow: hidden;
+        height: 3rem;
+        margin-bottom: .2rem;
+        width: 100%;
+        white-space: nowrap;
+
+        ul {
+            height: 3.34rem;
+
+            position: relative;
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        li {
+            display: inline-block;
+            width: 3rem;
+            margin-right: .1rem;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+        a {
+            display: block;
+            padding: .2rem;
+        }
+        h2 {
+            font-weight: bold;
+        }
+        p {
+            padding: .2rem 0;
+            font-size: .26rem;
+            color: #999;
+            height: .5rem;
+            white-space: normal;
+        }
+        img {
+            width: 100%;
+            height: 1.4rem;
+        }
+    }
+    .bg {
+        opacity: .8;
+
+        img {
+            width: 100%;
+            height: 1.8rem;
+        }
+    }
+}
+
+// 楼盘列表/地图页 头部
+#search_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 1rem;
+    background-color: #fff;
+
+    .header-popup.showing {
+        transform: translateY(12%);
+    }
+    .icon-left,
+    .icon-nav-extension {
+        font-size: .5rem;
+        padding: .2rem;
+        color: #0674fb;
+    }
+    .icon-left {
+        font-size: .6rem;
+    }
+    .search {
+        width: 70%;
+        background: #F3F4F7;
+        text-align: center;
+        border-radius: 1rem;
+        height: .8rem;
+        line-height: .8rem;
+        display: inline-block;
+        color: #999;
+
+        i {
+            vertical-align: middle;
+        }
+        span {
+            font-size: .3rem;
+        }
+    }
+}
+#category_nav {
+    position: fixed;
+    left: 0;
+    top: 1rem;
+    z-index: 99;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 1px 1px 1px 1px rgba(177, 177, 177, 0.16);
+    
+    .nav {
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+
+        li {
+            padding: .4rem 0;
+            font-size: .3rem;
+            &::after {
+                content: '';
+                display: inline-block;
+                vertical-align: middle;
+                margin-left: .08rem;
+                border-style: solid;
+                border-width: .1rem;
+                border-color: #999 transparent transparent transparent;
+            }
+            &.active::after {
+                margin-top: -.16rem;
+                border-color: transparent transparent #999 transparent;
+            }
+        }
+    }
+    .cont-wrap {
+        display: none;
+        max-height: 7rem;
+        overflow: hidden;
+        position: absolute;
+        top: 1.1rem;
+        width: 100%;
+    }
+    .cont {
+        li {
+            display: none;
+            @include clearfix();
+            background-color: #fff;
+
+            &.on {
+                display: block;
+            }
+            a {
+                float: left;
+                width: 50%;
+                box-sizing: border-box;
+                padding: .35rem .6rem;
+                border-top: 1px solid #f8f8f8;
+                text-align: center;
+            }
+        }
+    }
+}
+
+
+// 全局mask
+#m_mask {
+    display: none;
+    position: fixed;
+    z-index: 9;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+// 全局link
+.link {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding: .3rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+// 无数据时展示
+.empty-data {
+    position: relative;
+    height: 5.7rem;
+    padding-top: 3rem;
+    text-align: center;
+
+    i {
+        font-size: 1.5rem;
+        color: #999;
+    }
+    p {
+        padding-top: .2rem;
+        color: #999;
+    }
+}
+
+// 电话按钮
+.m-phone {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    right: -.1rem;
+    top: .8rem;
+    width: 1.3rem;
+    height: .6rem;
+    line-height: .6rem;
+    text-align: center;
+    border-top-left-radius: .4rem;
+    border-bottom-left-radius: .4rem;
+    font-size: .24rem;
+
+    color: #fff;
+    background: url(/tpl/wap2019/images/phone_bg.png) no-repeat;
+    background-size: cover;
+    
+    img {
+        height: .5rem;
+    }
+    i {
+        font-size: .32rem;
+    }
+}
+
+// 楼盘列表
+.house-list {
+    .list {
+        margin: 0 .1rem;
+        
+        li {
+            position: relative;
+        }
+        .pic {
+            overflow: hidden;
+            position: relative;
+            width: 40%;
+            height: 2rem;
+            border-radius: .06rem;
+            img {
+                height: 100%;
+                width: 100%;
+            }
+        }
+        .intro {
+            width: 60%;
+            position: relative;
+            padding-left: .1rem;
+            h4 {
+                line-height: .5rem;
+                @include f_bold();
+                @include t-hide(70%);
+            }
+            .city {
+                font-size: .28rem;
+                color: #999;
+            }
+            .price {
+                padding-top: .1rem;
+                font-size: .32rem;
+                color: #ED523D;
+                
+                .num {
+                    max-width: 45%;
+                    font-size: .28rem;
+                    i {
+                        font-size: .34rem;
+                    }
+                }
+                
+            }
+            .label {
+                padding-top: .1rem;
+                
+                i {
+                    display: inline-block;
+                    font-size: .24rem;
+                    color: #666;
+                    background: #EEF0F8;
+                    padding: .06rem .08rem;
+                    margin: 0 .04rem .04rem;
+                }
+            }
+            .tip{
+                overflow: hidden;
+                position: absolute;
+                bottom: 0;
+                max-width:70%;
+
+                i {
+                    width:100%;
+                    display: inline-block; 
+                    font-size: .24rem; 
+                    color: #F9662D;
+                    border:1px solid #F9662D;
+                    padding:.04rem .16rem;
+                    border-radius: 3px;
+                    box-sizing: border-box;
+                    @include t-hide();
+                }
+                .em_l {
+                    border:1px solid #F9662D;
+                    display:block;
+                    width:.2rem;
+                    height:.2rem;
+                    position:absolute;
+                    top:.06rem;
+                    left:-.14rem;
+                    border-radius:50%;
+                    background:#FFF;
+                }
+                .em_r {
+                    border:1px solid #F9662D;
+                    display:block;
+                    width:.2rem;
+                    height:.2rem;
+                    position:absolute;
+                    top:.06rem;
+                    right:-.14rem;
+                    border-radius:50%;
+                    background:#FFF;
+                }
+            }
+        }
+        .location {
+            position: absolute;
+            left: 0;
+            top: 0;
+            padding: .02rem .1rem;
+            color: #fff;
+            background-color: rgba(0, 0, 0, .4);
+            border-radius: 0 0 .06rem 0;
+            @include f_sm();
+        }
+        .m-phone {
+            top: .26rem;
+        }
+    }
+}
+
+// 新闻列表
+.news-list {
+    .list {
+        margin: 0 .1rem;
+        border-top: 1px solid #eee;
+        
+        li {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            padding: .3rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        .pic {
+            width: 35%;
+            height: 2rem;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .intro {
+            width: 65%;
+            position: relative;
+            padding-left: .1rem;
+            h4 {
+                line-height: .4rem;
+            }
+
+            .time {
+                position: absolute;
+                bottom: .2rem;
+                font-size: .3rem;
+                color: #999;
+            }
+        }
+    }
+}
+
+// 报名|订阅
+.m-service {
+    border: 1px dashed #F56140;
+    box-shadow: 0px 0px 18px 0px #d4d4d4;
+    position: relative;
+    padding: .4rem;
+    margin-bottom: .3rem;
+
+    h3 {
+        font-size: .5rem;
+        padding-bottom: .3rem;
+        font-weight: bold;
+    }
+    p {
+        font-size: .3rem;
+        line-height: .4rem;
+    }
+    .phone {
+        width: 90%;
+        height: .6rem;
+        line-height: .6rem;
+        margin: .3rem 0;
+        color: #999;
+        border-bottom: 1px solid #999;
+    }
+    .btn {
+        display: block;
+        width: 90%;
+        height: .8rem;
+        line-height: .8rem;
+        border-radius: 10px;
+        text-align: center;
+        color: #fff;
+        background: #eb6359;
+    }
+}
+
+// 底部
+#copyright {
+    padding: .4rem 0;
+
+    .list {
+        display: flex;
+        justify-content: space-around;
+    }
+    p {
+        padding-top: .4rem;
+        text-align: center;
+        @include f_sm();
+        @include c_light();
+    }
+}
+#footer {
+    position:fixed; 
+    z-index: 9; 
+    bottom:0px; 
+    left:0; 
+    width:100%; 
+    height:.8rem; 
+    background:#eaeaea;
+
+    & .item1,
+    & .item2,
+    & .item3 {
+        line-height:.8rem; 
+        display:block; 
+        text-align:center; 
+        position:relative; 
+        margin-right:0; 
+        margin-left:0; 
+        float:left;
+    }
+    & .item1 {
+        background:#0099eb; 
+        color:#fff;
+    }
+    & .item2 {
+        background:#7ab338; 
+        color:#fff;
+    }
+    & .item3 {
+        background:#eb6359; 
+        color:#fff;
+    }
+    & img {
+        width: auto;
+        display:inline-block;
+        vertical-align: middle; 
+        margin-right:0rem; 
+        max-height:1.8rem; 
+        width: .7rem;
+    }
+}
+
+
+// 公共楼盘列表
+.recommend-list {
+    .m-title {
+        padding: 0 .2rem;
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+
+        &::before {
+            content: "";
+            display: inline-block;
+            width: .1rem;
+            height: .4rem;
+            background: #FF9765;
+            position: absolute;
+            left: .2rem;
+            top: 0;
+            
+        }
+        & > span {
+            font-size: .4rem;
+            font-weight: bold;
+            padding-left: .2rem;
+        }
+        .iconfont {
+            vertical-align: -.04rem;
+        }
+    }
+    .list {
+        margin-top: .3rem;
+    }
+}
+
+
+
+
+// 数据加载
+.dropload-up,.dropload-down {
+	position: relative;
+	height: 0;
+	overflow: hidden;
+	font-size: .3rem;
+	color: #999
+}
+.dropload-down {
+	height: 1rem;
+}
+.dropload-refresh,.dropload-update,.dropload-load,.dropload-noData {
+	height: 1rem;
+	line-height: 1rem;
+	text-align: center
+}
+.dropload-load .loading {
+	display: inline-block;
+	height: .3rem;
+	width: .3rem;
+	border-radius: 100%;
+	margin: .12rem;
+	border: 2px solid #666;
+	border-bottom-color: transparent;
+	vertical-align: middle;
+	animation: loadingRotate 0.75s linear infinite
+}
+@keyframes loadingRotate {
+	0% {
+		transform: rotate(0deg)
+	}
+
+	50% {
+		transform: rotate(180deg)
+	}
+
+	100% {
+		transform: rotate(360deg)
+	}
+}
+
+
+
+// 搜索页
+#house_filter {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: .2rem;
+
+        .back {
+            img {
+                width: .6rem;
+                height: .6rem;
+            }
+        }
+        .search {
+            width: 88%;
+
+            .input {
+                width: 85%;
+                margin-bottom: 0px;
+                display: block;
+                float: left;
+                border: 1px solid #4292F1;
+                border-radius: 0;
+                height: .8rem;
+                padding: 0 10px;
+                box-sizing: border-box;
+            }
+            .btn {
+                width: 15%;
+                background: #4292F1;
+                display: block;
+                float: left;
+                text-align: center;
+                height: .8rem;
+                line-height: .8rem;
+
+                .icon-search {
+                    color: #fff;
+                    font-size: .6rem;
+                }
+            }
+        }
+    }
+    .card {
+        @include clearfix();
+        
+        h4 {
+            padding: .3rem .2rem;
+            background-color: #f1f1f1;
+
+            &::before {
+                display: inline-block;
+                content: '';
+                width: .04rem;
+                height: .28rem;
+                margin-right: .1rem;
+                background-color: #4292F1;
+                vertical-align: middle;
+            }
+        }
+        ul {
+            padding: 0 .2rem;
+            
+            li {
+                float: left;
+                box-sizing: border-box;
+                width: 33.33333333%;
+                height: .8rem;
+                border-bottom: 1px solid #ebebeb;
+
+                &:nth-child(3n) span {
+                    border-right-color: transparent;
+                }
+            }
+            a {
+                display: block;
+                box-sizing: border-box;
+                width: 100%;
+                height: 100%;
+                padding: .2rem 0;
+                text-align: center;
+            }
+            span {
+                display: block;
+                box-sizing: border-box;
+                width: 100%;
+                height: 100%;
+                float: left;
+                border-right: 1px solid #ebebeb;
+                padding: 0 .1rem;
+                @include t-hide();
+            }
+        }
+    }
+}

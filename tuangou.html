@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<title>海南房产团购价格信息_海南楼盘团购--<?=WEB_NAME?></title>
+	<!-- <meta name="keywords" content="关键字">
+	<meta name="description" content="网址描述"> -->
+	
+	<?php require('/tpl/wap2020/template/head.html');?>
+</head>
+<body>
+	<div class="app" id="tuangou">
+		<?php require('/tpl/wap2020/template/header.html');?>
+		<div class="tuangou-list">
+			<div class="load-wrapper">
+				<ul class="list">
+					<?php foreach($listData['listData'] as $key => $val){ ?>
+					<li>
+						<div class="pic">
+							<img class="lazy" src="/tpl/wap2020/images/img_default.png" data-original="<?= $picDomain.$val['pic'] ?>" alt="<?=$val['title']?>" onerror="loadIMGErr(this)">
+						</div>
+						<div class="intro">
+							<h4><span>[<?=$val['city']?>]</span><?=$val['title']?></h4>
+							<p class="price">
+								<span>团购价：</span><?=$val['price']?>
+								<a class="m-phone" href="tel:<?=Tels::wap($val['phone'])?>" onclick="submitPhone(0, '<?=$val['phone']?>', '团购列表：')">
+									<img src="/tpl/wap2020/images/phone.gif">免费
+								</a>
+							</p>
+						</div>
+						<a href="/tuan/<?=$val['id']?>.html" class="link" title="<?=$val['title']?>"></a>
+					</li>
+					<?php }?>
+				</ul>
+			</div>
+		</div>
+
+		<?php require('/tpl/wap2020/template/footer.html');?>
+	</div>
+	
+	<?php require('/tpl/wap2020/template/script.html');?>
+	<script type="text/javascript" src="/tpl/wap2020/js/dropload.min.js"></script>
+	<script type="text/javascript" src="/tpl/wap2020/js/util.js"></script>
+	<script>
+		$(function () {
+			util.dropLoadData(<?= $listData['PageCount'] ?>, 'get_tuan.php')
+		})
+	</script>
+
+</body>
+
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title><?=WEB_SEONAME?></title>
+    <meta name="keywords" content="<?=WEB_SEOKEY?>" />
+    <meta name="description" content="<?=WEB_SEODESC?>" />
+    
+    <?php require('/tpl/wap2020/template/head.html');?>
+    
+<body>
+    
+    <div class="app house_detail" id="house_article">
+        <?php require('/tpl/wap2020/house_detail/temp/header.html');?>
+        <div class="banner m-header">
+            <img src="http://h.0898cfw.com/upload/0/27/27.jpg" alt="xxx">
+            <div class="top">
+                <i class="iconfont icon-Left"></i>
+                <i class="iconfont icon-nav-extension"></i>
+            </div>
+            <a href="/">相册<i class="iconfont icon-jinru"></i></a>
+        </div>
+        <div class="main">
+            <div class="card card-info">
+                <div class="title">
+                    <h3>四季康城五期山海一品居</h3>
+                    <span class="status">新开盘</span>
+                    <span class="get"><i class="iconfont icon-tongzhi2"></i>获取销控表</span>
+                </div>
+                <p class="price">
+                    <span>¥8800元/㎡</span>
+                    <em>(有效期至7月17日)</em>
+                </p>
+                <ul class="tag">
+                    <li>温泉社区</li>
+                    <li>温泉社区</li>
+                    <li>温泉社区</li>
+                </ul>
+                <div class="discount">
+                    <i>优惠</i>
+                    <span>报名享报销机票、安排住宿，额外99折</span>
+                </div>
+                <div class="phone">
+                    <p class="p1">售楼电话： <span>0898-66772902</span></p>
+                    <p class="p2">最新价格、政策行情、楼盘优惠信息等可咨询</p>
+                    <a href="/"><i class="iconfont icon-phone"></i></a>
+                </div>
+                <div class="row pop">
+                    <div class="col-xs-6"><i class="iconfont icon-gupiao"></i><span>降价通知</span></div>
+                    <div class="col-xs-6"><i class="iconfont icon-tongzhi2" style="font-size: .3rem;"></i><span>报名看房</span></div>
+                </div>
+            </div>
+            <div class="card card-tuangou">
+                <p class="btn">申请团购</p>
+                <span>已有<em>198</em>人加入团购</span>
+                <p>点击参加 <i class="iconfont icon-right"></i></p>
+            </div>
+            <div class="card card-hx">
+                <div class="title row">
+                    <h5 class="col-xs-3">主力户型</h5>
+                    <div class="wrap col-xs-9">
+                        <ul>
+                            <li class="cur">一居(2)</li>
+                            <li>一居(2)</li>
+                            <li>一居(2)</li>
+                            <li>一居(2)</li>
+                            <li>一居(2)</li>
+                            <li>一居(2)</li>
+                        </ul>
+                    </div>
+                </div>
+                <ul class="cont">
+                    <li>
+                        <div class="wrapper">
+                            <div class="item">
+                                <img src="http://img1.0898cfw.com/upload/0/27/14E8D984554A8E34F23611337C1CC24D.jpg" alt="">
+                                <div class="intro">
+                                    <div class="specific">
+                                        <span>一房两厅一卫</span>
+                                        <button>获取底价</button>
+                                    </div>
+                                    <div class="area"><span>(建筑面积)</span>61.85㎡</div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <a href="/house/27-hx.html" class="more">更多户型</a>
+            </div>
+            <div class="card card-dynamic">
+                <div class="t">
+                    <h5>楼盘动态</h5>
+                    <a href="/">全部<i class="iconfont icon-right"></i></a>
+                </div>
+                <ul class="list">
+                    <li>
+                        <a href="/lookgroup/<?=$val['id']?>.html" class="link" title="<?=$val['title']?>">
+                            <div class="pic">
+                                <img class="lazy" src="http://m.lfw66.com/upload/201906/55/2c/24F6DCFE11A03044A442DA79A1F764A3.jpg" data-original="<?=$picDomain.$val['pic']?>" alt="<?=$val['title']?>" onerror="loadIMGErr(this)">
+                            </div>
+                            <div class="intro">
+                                <h4>澄迈房价 | 四季康城五期山海一品居房价58万/套起</h4>
+                                <p class="time">2019-06-26</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/lookgroup/<?=$val['id']?>.html" class="link" title="<?=$val['title']?>">
+                            <div class="pic">
+                                <img class="lazy" src="http://m.lfw66.com/upload/201906/55/2c/24F6DCFE11A03044A442DA79A1F764A3.jpg" data-original="<?=$picDomain.$val['pic']?>" alt="<?=$val['title']?>" onerror="loadIMGErr(this)">
+                            </div>
+                            <div class="intro">
+                                <h4>澄迈房价 | 四季康城五期山海一品居房价58万/套起</h4>
+                                <p class="time">2019-06-26</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <button class="subscribe">订阅动态</button>
+            </div>
+            <div class="card-gg">
+                <img src="/tpl/wap2019/house_detail/icon/images/house_gg.jpg">
+                <div class="intro">
+                    <p>（大型团购 、小型陪购、折扣、优惠抢先知！）</p>
+                        <input type="text" value="您的手机号码" id="p_phone" onfocus="if(this.value=='您的手机号码'){this.value=''};this.style.color='black';" onblur="if(this.value==''||this.value=='您的手机号码'){this.value='您的手机号码';this.style.color='#DFDFDF';}">
+                        <button id="p_submit">立即获取</button>
+                </div>
+            </div>
+            <div class="card card-map">
+                <div class="t"><h5>周边配套</h5></div>
+                <ul class="nav">
+                    <li class="cur">学校</li>
+                    <li>医院</li>
+                    <li>交通</li>
+                    <li>餐饮</li>
+                    <li>娱乐</li>
+                </ul>
+                <div class="allmap"></div>
+                <p class="local"><i class="iconfont icon-Map"></i>地址：澄迈县金江镇（金马大道与海榆西线交汇处）</p>
+            </div>
+            <div class="card-recommend">
+                <ul class="nav row">
+                    <li class="cur col-xs-4">热销楼盘<i class="iconfont icon-hot"></i></li>
+                    <li class="col-xs-4">周边楼盘</li>
+                    <li class="col-xs-4">同价楼盘</li>
+                </ul>
+                <div class="list">
+                    <a href="#">
+                        <div class="pic">
+                            <img src="http://h.0898cfw.com/upload/0/8/8.jpg">
+                            <span class="location">临高</span>
+                        </div>
+                        <div class="intro">
+                            <p class="t">清凤黄金海岸</p>
+                            <p class="time">有效时间: 7月17日</p>
+                            <p class="price">¥8800元/㎡</p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="pic">
+                            <img src="http://h.0898cfw.com/upload/0/8/8.jpg">
+                            <span class="location">临高</span>
+                        </div>
+                        <div class="intro">
+                            <p class="t">清凤黄金海岸</p>
+                            <p class="time">有效时间: 7月17日</p>
+                            <p class="price">¥8800元/㎡</p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="pic">
+                            <img src="http://h.0898cfw.com/upload/0/8/8.jpg">
+                            <span class="location">临高</span>
+                        </div>
+                        <div class="intro">
+                            <p class="t">清凤黄金海岸</p>
+                            <p class="time">有效时间: 7月17日</p>
+                            <p class="price">¥8800元/㎡</p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="pic">
+                            <img src="http://h.0898cfw.com/upload/0/8/8.jpg">
+                            <span class="location">临高</span>
+                        </div>
+                        <div class="intro">
+                            <p class="t">清凤黄金海岸</p>
+                            <p class="time">有效时间: 7月17日</p>
+                            <p class="price">¥8800元/㎡</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="bottom">
+                    <button class="btn btn-more">看更多<i class="iconfont icon-right"></i></button>
+                    <button class="btn btn-refresh">换一换<i class="iconfont icon-huanyihuan"></i></button>
+                </div>
+            </div>
+        </div>
+        <?php require('/tpl/wap2020/house_detail/temp/process.html');?>
+        
+        
+        <?php require('/tpl/wap2020/template/footer.html');?>
+    </div>
+
+    
+    <?php require('/tpl/wap2020/template/script.html');?>
+
+</body>
+
+</html>

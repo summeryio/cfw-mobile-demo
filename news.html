@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<title><?=($category['seo_title']==''?$category['title']:$category['seo_title'])?>-<?=WEB_NAME?></title>
+	<!-- <meta name="keywords" content="关键字">
+	<meta name="description" content="网址描述"> -->
+	
+    <?php require('/tpl/wap2020/template/head.html');?>
+</head>
+<body>
+	<div class="app" id="news">
+        <?php require('/tpl/wap2020/template/header.html');?>
+		<div class="list-box news-list">
+			<div class="load-wrapper">
+				<ul class="list">
+					<?php foreach ($listData['listData'] as $key => $val) { ?>
+					<li>
+						<a href="/news/<?=$val['id']?>.html" class="link"  title="<?=$val['title']?>">
+							<div class="intro">
+								<h4><?php echo $val['title'] ?></h4>
+								<!-- <p class="time">2019-06-03</p> -->
+							</div>
+							<div class="pic">
+								<img class="lazy" src="/tpl/wap2020/images/img_default.png" data-original="<?=$val['pic']?>" alt="<?=$val['title']?>" onerror="loadIMGErr(this)">
+							</div>
+						</a>
+					</li>
+					<?php } ?>
+				</ul>
+			</div>
+		</div>
+
+		<?php require('/tpl/wap2020/template/footer.html');?>
+	</div>
+	
+	<?php require('/tpl/wap2020/template/script.html');?>
+	<script type="text/javascript" src="/tpl/wap2020/js/dropload.min.js"></script>
+	<script type="text/javascript" src="/tpl/wap2020/js/util.js"></script>
+	<script>
+		$(function () {
+			util.dropLoadData(<?= $listData['PageCount'] ?>, 'get_news2018.php')
+		})
+	</script>
+	
+</body>
+
+</html>

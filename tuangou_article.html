@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<title><?=$rows['title']?>-<?=WEB_NAME?></title>
+	<!-- <meta name="keywords" content="关键字">
+	<meta name="description" content="网址描述"> -->
+	
+    <?php require('/tpl/wap2020/template/head.html');?>
+</head>
+<body>
+	<div class="app" id="tuangou_article">
+        <?php require('/tpl/wap2020/template/header.html');?>
+		<div class="container">
+			<div class="banner"><img src="<?=$picDomain.$rows['pic']?>"></div>
+			<div class="head">
+				<h4><?=$rows['title']?></h4>
+				<p class="price">团购价：<b><?=$rows['price']?></b></p>
+				<div class="contact">
+					<p>最低价格、政策行情、楼盘优惠信息等可咨询</p>
+					<p>售楼电话：<a href="tel:<?=Tels::wap($rows['phone'])?>"><?=$rows['phone']?></a></p>
+					<a class="m-phone" href="tel:<?=Tels::wap($rows['phone'])?>" onclick="submitPhone(0, '<?=$rows['phone']?>', '团购详情：')">
+						<img src="/tpl/wap2020/images/phone.gif">
+						免费
+					</a>
+				</div>
+			</div>
+			<div class="card source">
+				<div class="title">房源介绍</div>
+				<div class="content">
+					<p><span>项目：</span><a href="/house/<?=$rows['house_id']?>.html"><?=$rows['house_name']?></a></p>
+					<p><span>地址：</span><?=$hrows['address']?></p>
+				</div>
+			</div>
+			<div class="card description">
+				<div class="title">房源介绍</div>
+				<div class="content"><?=$rows['content']?></div>
+			</div>
+		</div>
+
+		<?php require('/tpl/wap2020/template/footer.html');?>
+	</div>
+	
+    <?php require('/tpl/wap2020/template/script.html');?>
+
+</body>
+
+</html>

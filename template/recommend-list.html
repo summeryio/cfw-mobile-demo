@@ -1,0 +1,53 @@
+<div class="recommend-list house-list">
+    <div class="m-title">
+        <span>口碑好盘</span>
+        <a href="/house/">
+            <span>查看更多</span>
+            <i class="iconfont icon-right"></i>
+        </a>
+    </div>
+    <ul class="list">
+        <?php foreach($houseistop as $val){ ?>
+        <li>
+            <div class="pic">
+                <img class="lazy" data-original="<?=WebFun::OssPic($val['pic'])?>">
+                <?php
+                    foreach($cf_city as $val111){
+                        if($val111['id']==$val['cityid']){
+                            echo '<span class="location">',$val111['title'],'</span>';
+                            break;
+                        }
+                    };
+                ?>
+            </div>
+            <div class="intro">
+                <h4><?=$val['title']?></h4>
+                <div class="price">
+                    <span class="num">￥<i><?=$val['price']?></i>元/㎡</span>
+                </div>
+                <div class="label">
+                    <?php
+                        $i=1;
+                        if($val['catid']!=''){
+                            $tmp=explode(',',$val['catid']);
+                            foreach($tmp as $vs1){
+                                if($vs1!=''){
+                                    foreach($mcf_category[1]['subdir'] as $val111){
+                                        if($val111['id']==$vs1){echo  '<i>'.$val111['title'].'</i>';$i++;break;}
+                                    }
+                                    if($i==4) break;
+                                }
+                            }
+                        }
+                    ?>
+                </div>
+                <?php 
+                    if($val['sale_price']!="") echo '<p class="tip"><em class="em_l"></em><i>'.$val['sale_price'].'</i><em class="em_r"></em></p>';
+                ?>
+            </div>
+			<a href="/house/<?=$val['id']?>.html" class="link" title="<?=$val['title']?>"></a>
+            <a class="m-phone" href="tel:<?=Tels::wap($val['phone'])?>"><img src="/tpl/wap2019/images/phone.gif">咨询</a>
+        </li>
+        <?php }?>
+    </ul>
+</div>

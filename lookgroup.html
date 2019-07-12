@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<title>海南看房团_临高看房团报名_三亚买房团购--<?=WEB_NAME?></title>
+	<meta name="keywords" content="看房团,看房团报名,海南看房团">
+	<meta name="description" content="<?=WEB_NAME?>看房团，根据不同需求定制专属看房路线，享独家团购价，免费专车接送，咨询电话：400-837-6599">
+	
+    <?php require('/tpl/wap2020/template/head.html');?>
+</head>
+<body>
+	<div class="app" id="lookgroup">
+        <?php require('/tpl/wap2020/template/header.html');?>
+		<div class="lookgroup-list">
+			<div class="load-wrapper">
+				<ul class="list">
+					<?php foreach ($listData['listData'] as $key => $val) { ?>
+					<li>
+						<a href="/lookgroup/<?=$val['id']?>.html" class="link" title="<?=$val['title']?>">
+							<div class="pic">
+								<img class="lazy" src="/tpl/wap2020/images/img_default.png" data-original="<?=$picDomain.$val['pic']?>" alt="<?=$val['title']?>" onerror="loadIMGErr(this)">
+							</div>
+							<div class="intro">
+								<h4><?=$val['title']?></h4>
+							</div>
+						</a>
+					</li>
+					<?php } ?>
+				</ul>
+			</div>
+		</div>
+		<?php require('/tpl/wap2020/template/footer.html');?>
+    </div>
+    
+    
+	<?php require('/tpl/wap2020/template/script.html');?>
+	<script type="text/javascript" src="/tpl/wap2020/js/dropload.min.js"></script>
+	<script type="text/javascript" src="/tpl/wap2020/js/util.js"></script>
+	<script>
+		$(function () {
+			util.dropLoadData(<?= $listData['PageCount'] ?>, 'get_lookgroup.php')
+		})
+	</script>
+
+</body>
+
+</html>

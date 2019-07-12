@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<title>海南别墅_临高海景房_三亚别墅价格-<?=WEB_NAME?></title>
+	<meta name="keywords" content="海南别墅,海景别墅,别墅价格,海口别墅">
+	<meta name="description" content="<?=WEB_NAME?>提供最新的海南别墅豪宅资讯，免费接机安排食宿，房源带看规划，咨询电话：400-837-6599">
+	
+	<?php require('/tpl/wap2020/template/head.html');?>
+</head>
+<body>
+	<div class="app" id="haozhai">
+		<?php require('/tpl/wap2020/template/header.html');?>
+		<div class="haozhai-list">
+			<div class="load-wrapper">
+				<ul class="list">
+					<?php foreach($listData['listData'] as $key=>$val){ ?>
+					<li>
+						<a href="/house/<?=$val['id']?>.html"  title="<?=$val['title']?>">
+							<div class="pic">
+								<img class="lazy" src="/tpl/wap2020/images/img_default.png" data-original="<?=$val['pic']?>" alt="<?=$val['title']?>" onerror="loadIMGErr(this)">
+								<?php 
+									foreach($cf_city as $val111){
+										if($val111['id']==$val['cityid']){
+											echo '<span class="location">',$val111['title'],'</span>';break;
+										}
+									}
+								?>
+							</div>
+							<div class="intro">
+								<h4><?=$val['title']?></h4>
+								<?php
+									if($val['total_price']!='0'){
+										echo '<p class="price">总价：<b>'.$val['total_price'].'</b>万/套</p>';
+									}else{
+										if($val['price']!='0'){
+											echo '<p class="price">均价：<b>'.$val['price'].'</b>元/㎡</p>';
+										}else{
+											echo '<p class="price">均价：<span>待定</span></p>';
+										}
+									}
+								?>
+							</div>
+						</a>
+					</li>
+					<?php }?>
+				</ul>
+			</div>
+        </div>
+
+        <?php require('/tpl/wap2020/template/footer.html');?>
+	</div>
+	
+	<?php require('/tpl/wap2020/template/script.html');?>
+	<script type="text/javascript" src="/tpl/wap2020/js/dropload.min.js"></script>
+	<script type="text/javascript" src="/tpl/wap2020/js/util.js"></script>
+	<script>
+		$(function () {
+			util.dropLoadData(<?= $listData['PageCount'] ?>, 'get_haozhai.php')
+		})
+	</script>
+
+</body>
+
+</html>

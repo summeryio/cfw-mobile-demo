@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title><?=WEB_SEONAME?></title>
+    <meta name="keywords" content="<?=WEB_SEOKEY?>" />
+    <meta name="description" content="<?=WEB_SEODESC?>" />
+    
+    <?php require('/tpl/wap2020/template/head.html');?>
+    
+<body>
+    
+    <div class="app" id="index">
+        <?php require('/tpl/wap2020/template/header.html');?>
+        <div class="nav">
+            <div class="row">
+                <a href="/" class="col-xs-4">
+                    <span><img src="/tpl/wap2020/images/nav/2.png" ></span>
+                    <p>首页</p>
+                </a>
+                <a href="/house/" class="col-xs-4">
+                    <span><img src="/tpl/wap2020/images/nav/3.png" ></span>
+                    <p>新楼盘</p>
+                </a>
+                <a href="/haozhai/" class="col-xs-4">
+                    <span><img src="/tpl/wap2020/images/nav/4.png" ></span>
+                    <p>豪宅</p>
+                </a>
+            </div>
+            <div class="row">
+                <a href="/tuan/" class="col-xs-4">
+                    <span><img src="/tpl/wap2020/images/nav/5.png" ></span>
+                    <p>团购</p>
+                </a>
+                <a href="/lookgroup/" class="col-xs-4">
+                    <span><img src="/tpl/wap2020/images/nav/6.png" ></span>
+                    <p>看房团</p>
+                </a>
+                <a href="/news/" class="col-xs-4">
+                    <span><img src="/tpl/wap2020/images/nav/7.png" ></span>
+                    <p>房产资讯</p>
+                </a>
+            </div>
+        </div>
+        
+        <div class="house-list">
+            <ul class="list">
+                <?php if(count($istophouse)>0){
+                    foreach($istophouse as $val){
+                ?>
+                <li>
+                    <a href="/house/<?=$val['id']?>.html" class="link" title="<?=$val['title']?>">
+                        <div class="pic">
+                            <img class="lazy" src="/tpl/wap2020/images/img_default.png" data-original="<?=WebFun::OssPic($val['pic'])?>" alt="<?=$val['title']?>" onerror="loadIMGErr(this)">
+                            <?php
+                                foreach($cf_city as $val111){
+                                    if($val111['id']==$val['cityid']){
+                                        echo '<span class="location">',$val111['title'],'</span>';
+                                        break;
+                                    }
+                                };
+                                ?>
+                        </div>
+                        <div class="intro">
+                            <h4><?=$val['title']?></h4>
+                            <div class="price">
+                                <span class="num">￥<i><?=$val['price']?></i>元/㎡</span>
+                                
+                            </div>
+                            <div class="label">
+                                <?php
+                                    $i=1;
+                                    if($val['catid']!=''){
+                                        $tmp=explode(',',$val['catid']);
+                                        foreach($tmp as $vs1){
+                                            if($vs1!=''){
+                                                foreach($mcf_category[1]['subdir'] as $val111){
+                                                    if($val111['id']==$vs1){echo  '<i>'.$val111['title'].'</i>';$i++;break;}
+                                                }
+                                                if($i==4) break;
+                                            }
+                                        }
+                                    }
+                                ?>
+                            </div>
+                            <?php 
+                                if($val['sale_price']!="") echo '<p class="tip"><em class="em_l"></em><i>'.$val['sale_price'].'</i><em class="em_r"></em></p>';
+                            ?>
+                        </div>
+                    </a>
+                    <a class="m-phone" href="tel:<?=Tels::wap($val['wap_phone'])?>" onclick="submitPhone(5, '<?=$val['wap_phone']?>', '楼盘列表：')">
+                        <img src="/tpl/wap2020/images/phone.gif">免费
+                    </a>
+                </li>
+                <?php }}?>
+            </ul>
+        </div>
+
+        <div class="news-list">
+            <ul class="list">
+                <?php if(count($news)>0){
+                    foreach($news as $val){?>
+                <li>
+                    <a href="/news/<?=$val['id']?>.html" class="link" title="<?=$val['title']?>">
+                        <div class="intro">
+                            <h4><?=$val['title']?></h4>
+                            <!-- <p class="time">2019-06-03</p> -->
+                        </div>
+                        <?=($val['pic']==''?'':'
+                        <div class="pic">
+                            <img class="lazy" src="/tpl/wap2019/images/img_default.png" data-original="'.$picDomain.$val['pic'].'" alt="'.$val['title'].'" onerror="loadIMGErr(this)">
+                        </div>
+                        ')?>
+                    </a>
+                </li>
+                <?php }
+                  }
+                ?>
+            </ul>
+        </div>
+        <?php require('/tpl/wap2020/template/footer.html');?>
+    </div>
+
+    
+    <?php require('/tpl/wap2020/template/script.html');?>
+    
+
+    <script>
+        $(function () {})
+    </script>
+
+
+</body>
+
+</html>

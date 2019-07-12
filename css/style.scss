@@ -1,0 +1,1073 @@
+@import './_reset.scss';
+@import './_mixin.scss';
+@import './_grid.scss';
+@import './_common.scss';
+
+.app {
+    padding-top: .96rem;
+    padding-bottom: .8rem;
+    width: 100%;
+    min-height: 100%;
+    @include box_sizing(border-box);
+}
+body.no-scroll {
+    overflow-y: hidden;
+}
+
+// 首页
+#index {
+    #header .icon-left {
+        visibility: hidden;
+    }
+    .nav {
+        width: 100%;
+        padding: .3rem 0;
+        background-color: #fff;
+
+        a {
+            margin-bottom: .4rem;
+            text-align: center;
+        }
+        span {
+            display: block;
+            width: 1rem;
+            height: 1rem;
+            line-height: 1rem;
+            margin: 0 auto .05rem;
+            border-radius: 50%;
+        }
+        i {
+            color: #fff;
+            font-size: .5rem;
+        }
+    }
+}
+
+
+// 楼盘列表
+#house {
+    min-height: auto;
+    padding-top: 2rem;
+}
+
+// 别墅列表
+#haozhai {
+    background-color: #f6f6f6;
+    
+    .haozhai-list {
+        
+        .list {
+            padding: 0 .2rem;
+        }
+        li {
+            position: relative;
+            padding: .1rem;
+            margin-bottom: .2rem;
+            background-color: #fff;
+        }
+        .pic {
+            position: relative;
+            height: 4.4rem;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+            span {
+                position: absolute;
+                left: .1rem;
+                top: .1rem;
+                background: rgba($color: #ffffff, $alpha: .6);
+                
+                padding: 2px 5px;
+                font-size: .28rem;
+            }
+        }
+        .intro {
+            display: flex;
+            justify-content: space-between;
+            padding: .2rem 0;
+
+            h4 {
+                @include t_hide(65%);
+            }
+            .price {
+                font-size: .28rem;
+                color: #999999;
+
+                b {
+                    font-size: .32rem;
+                    color: red;
+                }
+            }
+        }
+    }
+
+}
+
+
+// 团购列表
+#tuangou {
+    .tuangou-list {
+        .list {
+            margin: 0 .1rem;
+            border-top: 1px solid #eee;
+            
+            li {
+                position: relative;
+                display: flex;
+                justify-content: space-between;
+                padding: .3rem 0;
+                border-bottom: 1px solid #eee;
+            }
+            .pic {
+                width: 40%;
+                height: 2rem;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            .intro {
+                width: 60%;
+                position: relative;
+                padding-left: .1rem;
+                h4 {
+                    font-weight: bold;
+                    line-height: .5rem;
+
+                    span {
+                        font-size: .3rem;
+                        color: #999;
+                    }
+                }
+                .price {
+                    position: relative;
+                    padding: .1rem 0;
+                    color: #ED523D;
+                    font-size: .36rem;
+                    font-weight: bold;
+                    
+                    span {
+                        font-size: .28rem;
+                        color: #999;              
+                        font-weight: normal;
+                    }
+                }
+            }
+            .m-phone {
+                z-index: 2;
+                top: 0;
+            }
+            .link {
+                position: absolute;
+                left: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+            }
+        }
+    }
+}
+#tuangou_article {
+    background-color: #f6f6f6;
+    
+    .banner img {
+        width: 100%;
+    }
+    .head {
+        margin-top: .1rem;
+        padding: 0 .2rem;
+        background-color: #fff;
+
+        h4 {
+            font-size: .4rem;
+            font-weight: bold;
+            line-height: .5rem;
+            padding: .2rem 0;
+        }
+        .price {
+            color: #F00;
+
+            b {
+                font-weight: bold;
+                font-size: .5rem;
+            }
+        }
+        .contact {
+            position: relative;
+            margin-top: .3rem;
+            padding: .2rem 0;
+            border-top: 1px solid #ddd;
+
+            p {
+                font-size: .3rem;
+                color: #999;
+                line-height: .6rem;
+
+                a {
+                    color: #F00;
+                    font-size: .38rem;
+                }
+            }
+            .m-phone {
+                right: -.2rem;
+            }
+        }
+    }
+    .card {
+        margin-top: .1rem;
+        background-color: #fff;
+
+        .title {
+            padding: .2rem 0;
+            margin: 0 .2rem;
+            border-bottom: 1px solid #ddd;
+        }
+        .content {
+            padding: .2rem;
+            line-height: .5rem;
+
+            img {
+                width: 100%;
+            }
+        }
+    }
+    .source {
+        .content {
+            p {
+                padding-bottom: .2rem;
+            }
+            span {
+                color: #999;
+            }
+        }
+    }
+}
+
+
+
+// 看房团列表 || 详情
+#lookgroup {
+    .lookgroup-list {
+        .list {
+            margin: 0 .1rem;
+            border-top: 1px solid #eee;
+            
+            li {}
+            .pic {
+                width: 40%;
+                height: 2rem;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            .intro {
+                width: 60%;
+                position: relative;
+                padding-left: .1rem;
+                h4 {
+                    padding-top: .2rem;
+                    line-height: .4rem;
+                }
+            }
+        }
+    }
+}
+#lookgroup_article {
+    background-color: #f6f6f6;
+
+    .container {}
+    .head {
+        padding: 0 .2rem;
+        background-color: #fff;
+
+        h4 {
+            font-size: .4rem;
+            font-weight: bold;
+            line-height: .5rem;
+            padding: .2rem 0;
+            border-bottom: 1px solid #ddd;
+        }
+        p {
+            padding: .2rem 0;
+            line-height: .46rem;
+            font-size: .3rem;
+            color: #666;
+        }
+    }
+    .m-service {
+        margin: .2rem;
+        background-color: #fff;
+    }
+}
+.lg_content{ margin-top: .2rem; padding:.2rem; background-color: #fff;}
+.lg_content .lgt { 
+    position: relative; 
+    left: -.2rem;
+    font-weight: bold;
+    padding-left: .4rem; 
+    margin: .4rem 0;
+}
+.lg_content .lgt::before {
+    content: "";
+    display: inline-block;
+    width: .1rem;
+    height: .4rem;
+    background: #FF9765;
+    position: absolute;
+    left: .2rem;
+    top: 0;
+    
+}
+.lgcon{border-top:1px solid #dfdfdf; color:#666; font-size:0.65rem; line-height:2.0; margin-top:0.3rem; padding-top:0.3rem;}
+.lg_content .lgbg{ width:100%; display:table; position:relative;z-index:1}
+.lg_content .lgbg:after{content:""; top:0px;left:.2rem; width:0; height:100%; background:#0098dc; position:absolute; border-left:2px solid #dfdfdf; z-index:2}
+.lg_content .start{line-height:1.0; z-index:3; position:relative}
+.lg_content .start .iconfont{ padding:4px; background:#0680d0;border-radius:50%; color:#fff; margin-right:10px;}
+.lg_content .end{position:relative; padding-left:.6rem; line-height:1.0; margin-top:30px; z-index:3}
+.lg_content .end span{width:.4rem; height:.4rem; position:absolute; bottom:0px; left:6px; border:2px solid #0680d0; display:inline-table; border-radius:50%; background:#fff;}
+.lg_content dd{margin-top:30px; position:relative; padding-left:.5rem; z-index:3}
+.lg_content dd span{width:.4rem; height:.4rem; position:absolute; top:3px; left:.02rem; border:2px solid #0680d0; display:inline-table; border-radius:50%; background:#fff; line-height:.4rem;  text-align:center;}
+.lg_content dd a{color:#0680d0;  margin-left:20px; font-size: .4rem; margin-bottom: .2rem;}
+.lg_content dd  .lg_house{width:100%; display:table; margin-top:10px;color:#666;  line-height:2.5}
+.lg_content dd .pic{width:100%; display:table; margin-left:20px;}.lg_content dd .pic a{margin-left:0;}.lg_content dd .pic img{width:90%; border-radius:6px;}
+.lg_content .lg_house .fl{width:100%; display:table;}
+.lg_content em{font-style:normal}
+
+
+// 文章列表/详情
+#news {
+    .list {
+        .intro {
+            padding-left: 0;
+            padding-right: .1rem;
+        }     
+    }
+}
+#news_article {
+    .container {
+        padding: .5rem .2rem;
+    }
+    .info {
+        .title {
+            font-weight: bold;
+            font-size: .38rem;
+            line-height: .5rem;
+            padding-bottom: .3rem;
+        }
+        .cource {
+            font-size: .28rem;
+            color: #999;
+            padding-bottom: .2rem;
+            border-bottom: 1px solid #999;
+            
+            span {
+                padding-right: .2rem;
+            }
+        }
+    }
+    .content {
+        padding: .4rem 0;
+        line-height: .5rem;
+        border-bottom: 2px dashed #F56140;
+        font-size: .32rem !important;
+        
+        .tag {
+            margin-top: .5rem;
+            color: #999;
+            font-size: .28rem;
+
+            .iconfont {
+                vertical-align: -0.04rem;
+            }
+        }
+        p {
+            padding: .1rem 0;
+        }
+        img {
+            width: 100%;
+            margin: 0 auto;
+        }
+    }
+    .pagination {
+        padding: .4rem 0;
+        
+        p {
+            border: 1px solid #EAEBEC;
+            background: #F4F4F4;
+            padding: .16rem .1rem;
+            margin-bottom: .2rem;
+            font-size: .3rem;
+            line-height: .4rem;
+        }
+    }
+}
+
+
+// 地图
+#map {
+    min-height: auto;
+    padding-top: 2.1rem;
+}
+#allmap {
+    height: 9rem;
+}
+
+
+// 商务通软件
+#LXB_CONTAINER_SHOW.lxb-container-btn-show {
+    font-size: .26rem !important;
+    top: 40% !important;
+}
+#LR-BTN, #LR-CIRCLE {
+    width: 40px !important;
+    height: 40px !important;
+    line-height: 40px !important;
+}
+#LR-BTN-ICON {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    margin: auto !important;
+    width: 26px !important;
+    height: 26px !important;
+    background-size: cover !important;
+}
+.LR-ICON {
+    background-size: cover !important;
+}
+
+
+
+// 楼盘详情
+#houseDetail_header {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+
+    .top {
+        @include dflex();
+        height: .95rem;
+        padding: 0 .15rem;
+        border-bottom: 1px solid #d6d6d6;
+    }
+    .nav {
+        display: flex;
+        justify-content: space-around;
+
+        a {
+            padding: .2rem 0;
+            @include f_sm();
+            
+            &.cur {
+                @include c_red();
+            }
+        }
+    }
+    .phone {
+        height: .75rem;
+        line-height: .75rem;
+        text-align: center;
+        @include f_sm();
+        @include bc_blue();
+        @include c_white();
+
+        span {
+            color: #fee434;
+            @include f_md();
+        }
+        a {
+            @include button(.05rem, .2rem, #0099eb, #ffffff);
+        }
+    }
+}
+#houseDetail_process {
+    padding-top: .3rem;
+    @include bc_white();
+    
+    ul {
+        padding: 0 .4rem;
+        @include dflex();
+        text-align: center;
+
+        li {}
+        li.item i {
+            padding: .1rem;
+            @include c_white();
+            background-color: #8c8d90;
+            @include br_lg();
+        }
+        li.arrow {
+            position: relative;
+            top:  -.3rem;
+        }
+        li.arrow i {}
+        p {
+            line-height: 3;
+            @include f_xs();
+            @include c_light();
+        }
+    }
+    .tip {
+        line-height: 3;
+        text-align: center;
+        @include f_xs();
+        @include c_light();
+        @include border_t();
+
+        & i {
+            @include c_light();
+        }
+    }
+}
+
+.house_detail {
+    padding-top: 0;
+    background-color: #f3f4f7;
+
+    .main {
+        width: 97%;
+        margin: 0 auto;
+        position: relative;
+        top: -.8rem;
+        margin-bottom: -.8rem;
+    }
+    .card {
+        @include br_sm();
+        @include bc_white();
+        padding: .2rem;
+        margin-top: .2rem;
+    }
+}
+#house_article {
+    #copyright {
+        display: none;
+    }
+    .banner {
+        position: relative;
+        height: 5.2rem;
+        
+        img {
+            width: 100%;
+            height: 100%;
+        }
+        .top {
+            position: absolute;
+            z-index: 10;
+            top: 0;
+            left: 0;
+            width: 96%;
+            height: .95rem;
+            margin: 0 2%;
+            @include dflex();
+
+            i {
+                padding: .15rem;
+                border-radius: 50%;
+                @include c_deep();
+                @include bc_white();
+            }
+        }
+        a {
+            position: absolute;
+            right: .6rem;
+            bottom: 1rem;
+            padding: .05rem .1rem;
+            @include f_xs();
+            @include c_white();
+            @include br_sm();
+            background-color: rgba(0, 0, 0, .5);
+            opacity: .9;
+
+            i {
+                @include f_xs();
+                @include c_white();
+            }
+        }
+    }
+    .card-info {
+        margin-top: 0;
+
+        .title {
+            padding: .2rem 0;
+            @include clearfix();
+            h3 {
+                @include fl();
+                @include f_lg();
+                @include f_bold();
+                @include t_hide(60%);
+            }
+            .status {
+                @include fl();
+                padding: .04rem .1rem;
+                color: #469efc;
+                background-color: #def0fb;
+                @include f_xs();
+                vertical-align: bottom;
+            }
+            .get {
+                width: 1.5rem;
+                @include t_hide(1.5rem);
+                @include fr();
+                @include c_orange();
+                @include br_md();
+                padding: .14rem .1rem;
+                background-color: #fff6f0;
+                @include f_xs();
+                i {
+                    @include c_orange();
+                    @include f_xs();
+                }
+            }
+        }
+        .price {
+            span {
+                @include c_orange();
+            }
+            em {
+                @include f_xs();
+                @include c_light();
+            }
+        }
+        .tag {
+            padding: .3rem 0;
+            li {
+                display: inline-block;
+                margin-right: .05rem;
+                padding: .05rem;
+                @include f_xs();
+                @include c_mid();
+                @include bc_gray();
+            }
+        }
+        .discount{
+            overflow: hidden; 
+            background:#FDF5EE;
+            @include br_md();
+            height: .4rem;
+            line-height: .4rem;
+
+            i{
+                background:#F56140; 
+                text-align: center; 
+                width: 15%; 
+                @include f_sm();
+                @include c_white();
+                @include fl();
+                @include br_md();
+                background: -webkit-linear-gradient(right,#FD6F41,#FF9229);
+                background: -o-linear-gradient(right,#FD6F41,#FF9229);
+                background: -moz-linear-gradient(right,#FD6F41,#FF9229);
+                background: linear-gradient(to right,#FD6F41,#FF9229);
+            }
+            span{
+                @include fl();
+                max-width: 80%;
+                @include t_hide();
+                padding-left: .2rem;
+                @include f_xs();
+                @include c_mid();
+                text-align: left;
+            }
+        }
+        .phone {
+            position: relative;
+            margin-top: .3rem;
+            padding: .2rem 0;
+            @include border_t();
+            @include border_b();
+
+            .p1 {
+                margin-bottom: .2rem;
+                @include f_xs();
+                span {
+                    @include f_md();
+                    @include c_orange();
+                }
+            }
+            .p2 {
+                @include f_xs();
+                @include c_light();
+            }
+            a {
+                position: absolute;
+                top: .2rem;
+                right: 0;
+                @include fr();
+                padding: .14rem;
+                @include bc_orange();
+                @include br_lg();
+                vertical-align: top;
+
+                i {
+                    @include c_white();
+                }
+            }
+        }
+        .pop {
+            @include c_orange();
+            padding: .2rem 0;
+            text-align: center;
+            
+            i {
+                @include c_orange();
+                vertical-align: middle;
+            }
+            span {
+                vertical-align: middle;
+            }
+        }
+    }
+    .card-tuangou {
+        @include dflex();
+        @include f_sm();
+
+        .btn {
+            @include button(.1rem, .2rem, #fe7240, transparent);
+            border: 1px solid #fe7240;
+            @include br_md();
+        }
+        em {
+            font-style: normal;
+            color: #fe0000;
+        }
+    }
+    .card-hx {
+        padding-top: 0;
+        
+        .title {
+            height: 1rem;
+            line-height: 1rem;
+            
+            h5 {
+                @include f_lg();
+                @include f_bold();
+            }
+            .wrap {
+                height: .8rem;
+                overflow: hidden;
+                white-space: nowrap;
+                
+                ul {
+                    width: 100%;
+                    height: 1rem;
+                    overflow-x: auto;
+                    overflow-y: hidden;
+                    -webkit-overflow-scrolling: touch;
+                }
+                li {
+                    display: inline-block;
+                    @include f_sm();
+                    margin-right: .2rem;
+
+                    &.cur {
+                        @include c_red();
+                    }
+                }
+            }
+        }
+        .cont {
+            li {
+                height: 3.68rem;
+                overflow: hidden;
+                white-space: nowrap;
+            }
+            .wrapper {
+                width: 100%;
+                height: 4rem;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            .item {
+                display: inline-block;
+                margin-right: .1rem;
+                width: 3rem;
+                border: 1px solid #e3e3e3;
+            }
+            img {
+                width: 100%;
+                height: 2.4rem;
+            }
+            .intro {
+                padding: .05rem;
+                @include f_xs();
+                white-space: normal;
+            }
+            .specific {
+                padding: .2rem 0;
+                @include clearfix();
+                span {
+                    @include fl();
+                    @include t_hide(60%);
+                    line-height: .35rem;
+                }
+                button {
+                    @include fl();
+                    font-size: .2rem;
+                    @include button(0, 0, #ffffff, #fc7d6d);
+                    @include t_hide(40%);
+                    @include br_md();
+                }
+            }
+            .area {
+                padding-bottom: .1rem;
+                span {
+                    @include c_light();
+                }
+            }
+        }
+        .more {
+            display: block;
+            margin-top: .2rem;
+            width: 100%;
+            height: .6rem;
+            line-height: .6rem;
+            text-align: center;
+            color: #5477bb;
+            background-color: #f5f8fe;
+        }
+    }
+    .card-dynamic {
+        padding-top: 0;
+        
+        .t {
+            @include dflex();
+            line-height: 1rem;
+
+            h5 {
+                @include f_lg();
+                @include f_bold();
+            }
+            a, a i {
+                @include f_sm();
+                @include c_mid();
+            }
+            a i {
+                vertical-align: top;
+            }
+        }
+        .list {
+            margin-top: -.2rem;
+            li {}
+            .link {
+                padding: .2rem 0;
+            }
+            .pic {
+                width: 35%;
+                height: 1.6rem;
+                img {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: .04rem;
+                }
+            }
+            .intro {
+                width: 65%;
+                position: relative;
+                padding-left: .1rem;
+                h4 {
+                    font-size: .3rem;
+                    @include f_bold();
+                    padding-top: .1rem;
+                    line-height: .4rem;
+                }
+                p {
+                    margin-top: .2rem;
+                    text-align: right;
+                    @include f_sm();
+                    @include c_mid();
+                }
+            }
+        }
+        .subscribe {
+            margin: .2rem auto 0;
+            @include button(.02rem, .2rem, #fe7240, transparent);
+            border: 1px solid #fe7240;
+            @include br_md();
+            @include f_sm();
+        }
+    }
+    .card-gg {
+        position: relative;
+        height: 1.95rem;
+        margin-top: .2rem;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+        .intro {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            text-align: center;
+
+            p {
+                color: #fff;
+                line-height: .8rem;
+                text-align: center;
+                font-size: .32rem;
+            }
+            & input,
+            & button {
+                display: inline-block;
+                vertical-align: top;
+                outline: none;
+                border: none;
+                @include f_sm();
+                @include br_sm();
+            }
+            & input {
+                width: 4.46rem;
+                height: .68rem;
+                padding: .1rem;
+                box-sizing: border-box;
+                @include c_mid();
+                @include bc_white();
+            }
+            & button {
+                position: relative;
+                left: 0;
+                width: 1.65rem;
+                height: .68rem;
+                line-height: .68rem;
+                text-align: center;
+                @include c_white();
+                @include bc_red();
+            }
+        }
+    }
+    .card-map {
+        padding-top: 0;
+        .t {
+            line-height: 1rem;
+
+            h5 {
+                @include f_lg();
+                @include f_bold();
+            }
+        }
+        .nav {
+            @include dflex();
+            background-color: #f8f8f8;
+            margin-bottom: .2rem;
+            li {
+                width: 20%;
+                line-height: .5rem;
+                text-align: center;
+                @include br_sm();
+
+                &.cur {
+                    @include c_white();
+                    @include bc_red();
+                }
+            }
+        }
+        .allmap {
+            height: 4.25rem;
+        }
+        .local {
+            @include f_sm();
+            @include c_mid();
+            @include t_hide();
+        }
+    }
+    .card-recommend {
+        margin-top: .2rem;
+
+        .nav {
+            @include bc_white();
+            
+            li {
+                height: .8rem;
+                line-height: .8rem;
+                text-align: center;
+                
+                &.cur {
+                    color: #b05637;
+                    background-color: #f9f7f5;
+                }
+                i {
+                    @include c_red();
+                    position: relative;
+                    top: -.15rem;
+                    right: 0;
+                    font-size: .5rem;
+                }
+            }
+        }
+        .list {
+            @include dflex();
+            flex-wrap: wrap;
+            a {
+                width: 49.2%;
+                margin-top: .2rem;
+                @include bc_white();
+                padding: .1rem;
+                box-sizing: border-box;
+            }
+            .pic {
+                position: relative;
+                height: 2.2rem;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+                span {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    padding: .02rem .1rem;
+                    color: #fff;
+                    background-color: rgba(0,0,0,0.4);
+                    border-radius: 0 0 .06rem 0;
+                    font-size: .28rem;
+                }
+            }
+            .intro {
+                padding: .1rem;
+                .t {
+                    @include t_hide();
+                    line-height: 1.4;
+                }
+                .time {
+                    @include c_light();
+                    @include f_xs();
+                    line-height: 2;
+                }
+                .price {
+                    @include c_orange();
+                }
+            }
+        }
+        .bottom {
+            @include dflex();
+            margin: .2rem 0 .3rem;
+
+            .btn {
+                width: 49.2%;
+                line-height: .8rem;
+                @include bc_white();
+                @include f_sm();
+                @include c_mid();
+            }
+            .iconfont {
+                @include c_mid();
+            }
+            .icon-huanyihuan {
+                font-size: .32rem;
+                padding-left: .1rem;
+            }
+        }
+    }
+}

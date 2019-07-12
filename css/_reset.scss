@@ -1,0 +1,99 @@
+// ===========Reset===========
+a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: initial;
+}
+h1,h2,h3,h4,h5,h6,strong {
+    font-weight: normal;
+}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
+    display: block
+}
+
+body {
+    line-height: 1;
+}
+
+ol,ul {
+    list-style: none
+}
+
+blockquote,q {
+    quotes: none
+}
+
+blockquote:after,blockquote:before,q:after,q:before {
+    content: "";
+    content: none
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed
+}
+
+a {
+    text-decoration: none;
+    color: #333333;
+}
+
+a,a:focus {
+    outline: none
+}
+a:focus {
+    color: #333333;
+}
+
+a,b,blockquote,body,button,caption,dd,del,div,dl,dt,em,fieldset,figure,form,h1,h2,h3,h4,h5,h6,hr,html,i,ins,legend,li,menu,ol,p,pre,s,span,strong,table,td,textarea,th,u,ul {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-user-select: none
+}
+img {
+    max-width: 100%;
+    vertical-align: top;
+}
+html {
+    font-size: 13.333333vw;
+}
+body,html {
+    width: 100%;
+    height: 100%
+}
+body {
+    font-family: "PingFang-SC-Regular",Helvetica,"sans-serif";
+    font-size: .32rem;
+    -webkit-text-size-adjust: 100%!important;
+    -ms-text-size-adjust: 100%!important;
+    text-size-adjust: 100%!important;
+    background-color: #fff;
+    -webkit-font-smoothing: antialiased;
+    -webkit-overflow-scrolling: touch;
+    // max-width: 768px;
+    // margin: 0 auto;
+    overflow-x: hidden;
+    color: #333333;
+}
+button,input {
+    display: block;
+    border: none;
+    background-color: #fff;
+    outline: none;
+    font-size: .32rem;
+
+    -moz-appearance:none;
+    -webkit-appearance : none ;/*解决ios上按钮的圆角问题*/
+    border-radius: 0;/*解决ios上输入框圆角问题*/
+    background-color: transparent;
+}
+input[type=search]::-webkit-search-cancel-button{
+    -webkit-appearance: none;/*此处只是去掉默认的小×*/
+}
+.iconfont {
+    font-size: .4rem;
+    color: #333333;
+    vertical-align: middle;
+}
