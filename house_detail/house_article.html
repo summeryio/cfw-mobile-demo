@@ -1,48 +1,62 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <title><?=WEB_SEONAME?></title>
-    <meta name="keywords" content="<?=WEB_SEOKEY?>" />
-    <meta name="description" content="<?=WEB_SEODESC?>" />
+    <title>海南<?=$rows['title']?>售楼处,<?=$city.$rows['title']?>价格_优缺点,位置,户型图<?=WEB_NAME?></title>
+    <meta name="keywords" content="<?=$rows['title']?>价格,<?=$rows['title']?>怎么样,<?=$rows['title']?>位置,<?=$rows['title']?>配套,<?=$rows['title']?>售楼处"/>
+    <meta name="description" content="海南<?=$city.$rows['title']?>楼盘项目位于<?=$rows['address']?>，是<?=$mrows['kfs']?>在海南<?=$city?>开发的项目,规划面积达<?=$mrows['lp_totalarea']?>㎡，<?=$rows['title']?>售楼处电话：<?=$rows['phone']?>。"/>
     
     <?php require('/tpl/wap2020/template/head.html');?>
-    
 <body>
     
     <div class="app house_detail" id="house_article">
         <?php require('/tpl/wap2020/house_detail/temp/header.html');?>
         <div class="banner m-header">
-            <img src="http://h.0898cfw.com/upload/0/27/27.jpg" alt="xxx">
+            <img src="<?=$rows['pic']?>" alt="<?=$rows['title']?>">
             <div class="top">
                 <i class="iconfont icon-Left"></i>
                 <i class="iconfont icon-nav-extension"></i>
             </div>
-            <a href="/">相册<i class="iconfont icon-jinru"></i></a>
+            <a href="/house/<?=$rows['id']?>-xc.html?navid=3">相册<i class="iconfont icon-jinru"></i></a>
         </div>
         <div class="main">
             <div class="card card-info">
                 <div class="title">
-                    <h3>四季康城五期山海一品居</h3>
-                    <span class="status">新开盘</span>
+                    <h3><?=$rows['title']?></h3>
+                    <span class="status"><?php
+                        foreach ($mcf_category[3]['subdir'] as $valaa) {
+                            if($valaa['id']==$rows['typeid']){echo  $valaa['title'];break;}                                            
+                        }?>
+                    </span>
                     <span class="get"><i class="iconfont icon-tongzhi2"></i>获取销控表</span>
                 </div>
                 <p class="price">
-                    <span>¥8800元/㎡</span>
-                    <em>(有效期至7月17日)</em>
+                    <span>¥<?=($rows['price']==0?'待定':$rows['price'].'元/㎡')?></span>
+                    <em>(有效期至<?=date('n月j日', strtotime("+5 day"))?>)</em>
                 </p>
                 <ul class="tag">
-                    <li>温泉社区</li>
-                    <li>温泉社区</li>
-                    <li>温泉社区</li>
+                    <?php
+                        $i=1;
+                        if($rows['catid']!=''){
+                            $tmp=explode(',',$rows['catid']);
+                            foreach($tmp as $vs1){
+                                if($vs1!=''){
+                                    foreach($mcf_category[1]['subdir'] as $val111){    
+                                        if($val111['id']==$vs1){echo  '<li>'.$val111['title'].'</li>';$i++;break;}
+                                    }
+                                    if($i==4) break;
+                                }
+                            }
+                        }
+                    ?>
                 </ul>
                 <div class="discount">
                     <i>优惠</i>
                     <span>报名享报销机票、安排住宿，额外99折</span>
                 </div>
                 <div class="phone">
-                    <p class="p1">售楼电话： <span>0898-66772902</span></p>
+                    <p class="p1">售楼电话： <span><?=$rows['phone']?></span></p>
                     <p class="p2">最新价格、政策行情、楼盘优惠信息等可咨询</p>
-                    <a href="/"><i class="iconfont icon-phone"></i></a>
+                    <a href="tel:<?=Tels::wap($rows['phone'])?>" onclick="submitPhone(2, '<?=$rows['wap_phone']?>', '楼盘顶部：')"><i class="iconfont icon-phone"></i></a>
                 </div>
                 <div class="row pop">
                     <div class="col-xs-6"><i class="iconfont icon-gupiao"></i><span>降价通知</span></div>
@@ -54,35 +68,51 @@
                 <span>已有<em>198</em>人加入团购</span>
                 <p>点击参加 <i class="iconfont icon-right"></i></p>
             </div>
-            <div class="card card-hx">
+            <div class="card card-hx" id="anchor">
                 <div class="title row">
                     <h5 class="col-xs-3">主力户型</h5>
                     <div class="wrap col-xs-9">
                         <ul>
-                            <li class="cur">一居(2)</li>
-                            <li>一居(2)</li>
-                            <li>一居(2)</li>
-                            <li>一居(2)</li>
-                            <li>一居(2)</li>
-                            <li>一居(2)</li>
+                            <?php 				 
+                                if(count($huxing)>0){
+                                foreach($huxing as $key=>$val){
+                                    echo '<li value="'.($key+1).'" class="'.($key==0?'cur':'').'">'.$val['title'].'('.count($val['data']).')</li>';
+                                }}
+                            ?>
                         </ul>
                     </div>
                 </div>
                 <ul class="cont">
-                    <li>
+                    <?php 				 
+                    if(count($huxing)>0){
+                    foreach($huxing as $key=>$val){?>
+                    <li class="<?=($key==0?'cur':'')?>" img-changed="<?=($key==0?'null':'false')?>">
                         <div class="wrapper">
+                            <?php           
+                                if(count($val['data'])>0){
+                                foreach($val['data'] as $k=>$vs){
+                            ?>
                             <div class="item">
-                                <img src="http://img1.0898cfw.com/upload/0/27/14E8D984554A8E34F23611337C1CC24D.jpg" alt="">
+                                <?php           
+                                    if($key == 0){
+                                        echo '<img class="lazy" src="/tpl/wap2020/images/img_default.png" data-original="'.WebFun::OssPic($vs['pic']).'" onerror="loadIMGErr(this)">';
+                                    } else {
+                                        echo '<img class="sub-img" src="/tpl/wap2020/images/img_default.png" data-substitute="'.WebFun::OssPic($vs['pic']).'" onerror="loadIMGErr(this)">';
+                                    }
+                                ?>
+                                
                                 <div class="intro">
                                     <div class="specific">
-                                        <span>一房两厅一卫</span>
+                                        <span><?=$vs['title']?></span>
                                         <button>获取底价</button>
                                     </div>
-                                    <div class="area"><span>(建筑面积)</span>61.85㎡</div>
+                                    <div class="area"><span>(建筑面积)</span><?=$vs['area']?>㎡</div>
                                 </div>
                             </div>
+                            <?php }}?>
                         </div>
                     </li>
+                    <?php }}?>
                 </ul>
                 <a href="/house/27-hx.html" class="more">更多户型</a>
             </div>
@@ -92,33 +122,36 @@
                     <a href="/">全部<i class="iconfont icon-right"></i></a>
                 </div>
                 <ul class="list">
-                    <li>
-                        <a href="/lookgroup/<?=$val['id']?>.html" class="link" title="<?=$val['title']?>">
-                            <div class="pic">
-                                <img class="lazy" src="http://m.lfw66.com/upload/201906/55/2c/24F6DCFE11A03044A442DA79A1F764A3.jpg" data-original="<?=$picDomain.$val['pic']?>" alt="<?=$val['title']?>" onerror="loadIMGErr(this)">
-                            </div>
-                            <div class="intro">
-                                <h4>澄迈房价 | 四季康城五期山海一品居房价58万/套起</h4>
-                                <p class="time">2019-06-26</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/lookgroup/<?=$val['id']?>.html" class="link" title="<?=$val['title']?>">
-                            <div class="pic">
-                                <img class="lazy" src="http://m.lfw66.com/upload/201906/55/2c/24F6DCFE11A03044A442DA79A1F764A3.jpg" data-original="<?=$picDomain.$val['pic']?>" alt="<?=$val['title']?>" onerror="loadIMGErr(this)">
-                            </div>
-                            <div class="intro">
-                                <h4>澄迈房价 | 四季康城五期山海一品居房价58万/套起</h4>
-                                <p class="time">2019-06-26</p>
-                            </div>
-                        </a>
-                    </li>
+                    <?php 
+                        $i=0;
+                        if(count($newsrows)>0 && is_array($newsrows)){
+                            foreach($newsrows as $key=> $val){
+                                echo '<li>
+                                        <a href="/news/'.$val['id'].'.html" class="link" title="'.$val['title'].'">
+                                            <div class="pic">
+                                                <img class="lazy" src="'.$val['pic'].'" data-original="'.$val['pic'].'" alt="'.$val['title'].'" onerror="loadIMGErr(this)">
+                                            </div>
+                                            <div class="intro">
+                                                <h4>'.$val['title'].'</h4>
+                                                <p class="time">'.date('Y-m-d',$val['tim']).'</p>
+                                            </div>
+                                        </a>
+                                    </li>';
+                                $i++;
+                            }
+                        }           
+                        if($i==0){
+                            echo '<div class="empty-data">
+                                    <i class="iconfont icon-wushuju"></i>
+                                    <p>该楼盘没有最新动态<br/>小编马不停蹄更新中~</p>
+                                </div>';
+                        }
+                    ?>
                 </ul>
                 <button class="subscribe">订阅动态</button>
             </div>
             <div class="card-gg">
-                <img src="/tpl/wap2019/house_detail/icon/images/house_gg.jpg">
+                <img class="lazy" src=""  data-original="/tpl/wap2019/house_detail/icon/images/house_gg.jpg">
                 <div class="intro">
                     <p>（大型团购 、小型陪购、折扣、优惠抢先知！）</p>
                         <input type="text" value="您的手机号码" id="p_phone" onfocus="if(this.value=='您的手机号码'){this.value=''};this.style.color='black';" onblur="if(this.value==''||this.value=='您的手机号码'){this.value='您的手机号码';this.style.color='#DFDFDF';}">
@@ -134,8 +167,8 @@
                     <li>餐饮</li>
                     <li>娱乐</li>
                 </ul>
-                <div class="allmap"></div>
-                <p class="local"><i class="iconfont icon-Map"></i>地址：澄迈县金江镇（金马大道与海榆西线交汇处）</p>
+                <div class="allmap" id="houseDetail_map" data-maps="<?=$rows['map']?>" data-title="<?=$rows['title']?>"></div>
+                <p class="local"><i class="iconfont icon-Map"></i>地址：<?=$rows['address']?></p>
             </div>
             <div class="card-recommend">
                 <ul class="nav row">
@@ -143,66 +176,325 @@
                     <li class="col-xs-4">周边楼盘</li>
                     <li class="col-xs-4">同价楼盘</li>
                 </ul>
-                <div class="list">
-                    <a href="#">
-                        <div class="pic">
-                            <img src="http://h.0898cfw.com/upload/0/8/8.jpg">
-                            <span class="location">临高</span>
-                        </div>
-                        <div class="intro">
-                            <p class="t">清凤黄金海岸</p>
-                            <p class="time">有效时间: 7月17日</p>
-                            <p class="price">¥8800元/㎡</p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="pic">
-                            <img src="http://h.0898cfw.com/upload/0/8/8.jpg">
-                            <span class="location">临高</span>
-                        </div>
-                        <div class="intro">
-                            <p class="t">清凤黄金海岸</p>
-                            <p class="time">有效时间: 7月17日</p>
-                            <p class="price">¥8800元/㎡</p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="pic">
-                            <img src="http://h.0898cfw.com/upload/0/8/8.jpg">
-                            <span class="location">临高</span>
-                        </div>
-                        <div class="intro">
-                            <p class="t">清凤黄金海岸</p>
-                            <p class="time">有效时间: 7月17日</p>
-                            <p class="price">¥8800元/㎡</p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="pic">
-                            <img src="http://h.0898cfw.com/upload/0/8/8.jpg">
-                            <span class="location">临高</span>
-                        </div>
-                        <div class="intro">
-                            <p class="t">清凤黄金海岸</p>
-                            <p class="time">有效时间: 7月17日</p>
-                            <p class="price">¥8800元/㎡</p>
-                        </div>
-                    </a>
-                </div>
+                <ul class="list">
+                    <li class="cur">
+                        <?php if($allistop){
+                        foreach($allistop as $val){ ?>
+                            <a href="/house/<?=$val['id']?>.html">
+                                <div class="pic">
+                                    <img class="lazy" src="/tpl/wap2020/images/img_default.png" data-original="<?=WebFun::OssPic($val['pic'])?>" alt="<?=$val['title']?>" onerror="loadIMGErr(this)">
+                                    <?php
+                                    foreach($cf_city as $val111){
+                                        if($val111['id']==$val['cityid']){
+                                            echo '<span class="location">',$val111['title'],'</span>';
+                                            break;
+                                        }
+                                    };
+                                    ?>
+                                </div>
+                                <div class="intro">
+                                    <p class="t"><?= $val['title'] ?></p>
+                                    <p class="time">有效时间: <?= date('n月j日', strtotime("+5 day")) ?></p>
+                                    <?php 
+                                        if($val['price']==0){
+                                            echo '<p class="price">价格待定</p>';
+                                        } else {
+                                            echo '<p class="price">¥'.$val['price'].'元/㎡</p>';
+                                        }
+                                    ?>
+                                </div>
+                            </a>    
+                        <?php }}?>
+                    </li>
+                    <li img-changed="false">
+                        <?php if($houseistop){
+                        foreach($houseistop as $val){ ?>
+                            <a href="/house/<?=$val['id']?>.html">
+                                <div class="pic">
+                                    <img src="/tpl/wap2020/images/img_default.png" data-substitute="<?=WebFun::OssPic($val['pic'])?>" alt="<?=$val['title']?>" onerror="loadIMGErr(this)">
+                                    <?php
+                                    foreach($cf_city as $val111){
+                                        if($val111['id']==$val['cityid']){
+                                            echo '<span class="location">',$val111['title'],'</span>';
+                                            break;
+                                        }
+                                    };
+                                    ?>
+                                </div>
+                                <div class="intro">
+                                    <p class="t"><?= $val['title'] ?></p>
+                                    <p class="time">有效时间: <?= date('n月j日', strtotime("+5 day")) ?></p>
+                                    <?php 
+                                        if($val['price']==0){
+                                            echo '<p class="price">价格待定</p>';
+                                        } else {
+                                            echo '<p class="price">¥'.$val['price'].'元/㎡</p>';
+                                        }
+                                    ?>
+                                </div>
+                            </a>    
+                        <?php }}?>
+                    </li>
+                    <li img-changed="false">
+                        <?php if($otherprice){
+                        foreach($otherprice as $val){ ?>
+                            <a href="/house/<?=$val['id']?>.html">
+                                <div class="pic">
+                                    <img src="/tpl/wap2020/images/img_default.png" data-substitute="<?=WebFun::OssPic($val['pic'])?>" alt="<?=$val['title']?>" onerror="loadIMGErr(this)">
+                                    <?php
+                                    foreach($cf_city as $val111){
+                                        if($val111['id']==$val['cityid']){
+                                            echo '<span class="location">',$val111['title'],'</span>';
+                                            break;
+                                        }
+                                    };
+                                    ?>
+                                </div>
+                                <div class="intro">
+                                    <p class="t"><?= $val['title'] ?></p>
+                                    <p class="time">有效时间: <?= date('n月j日', strtotime("+5 day")) ?></p>
+                                    <?php 
+                                        if($val['price']==0){
+                                            echo '<p class="price">价格待定</p>';
+                                        } else {
+                                            echo '<p class="price">¥'.$val['price'].'元/㎡</p>';
+                                        }
+                                    ?>
+                                </div>
+                            </a>    
+                        <?php }}?>
+                    </li>
+                </ul>
                 <div class="bottom">
-                    <button class="btn btn-more">看更多<i class="iconfont icon-right"></i></button>
-                    <button class="btn btn-refresh">换一换<i class="iconfont icon-huanyihuan"></i></button>
+                    <a href="/house/" class="btn btn-more">看更多<i class="iconfont icon-right"></i></a>
+                    <button class="btn btn-refresh" id="refresh_house">换一换<i class="iconfont icon-huanyihuan"></i></button>
                 </div>
             </div>
         </div>
         <?php require('/tpl/wap2020/house_detail/temp/process.html');?>
-        
-        
         <?php require('/tpl/wap2020/template/footer.html');?>
     </div>
 
     
     <?php require('/tpl/wap2020/template/script.html');?>
+
+
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=HdWz2uRUeXdTGsdtWkG9Fv23Np90Ynjc"></script>
+    <script>
+        // 户型默认那里，横向滚动时图片没有
+        // 导航弹框图片优化
+        
+        
+        function initialMap() {
+            //获取地图定位start
+            var maps = document.querySelector("#houseDetail_map").getAttribute("data-maps");
+            var maptitle = document.querySelector("#houseDetail_map").getAttribute("data-title");
+
+            var locations = maps.split(",");
+            //获取地图定位end
+            var map = new BMap.Map("houseDetail_map");    // 创建Map实例
+            map.centerAndZoom(new BMap.Point(locations[0], locations[1]), 13);  // 初始化地图,设置中心点坐标和地图级别
+            //添加地图类型控件
+            // map.addControl(new BMap.MapTypeControl({
+            //     mapTypes: [
+            //         BMAP_NORMAL_MAP,
+            //         BMAP_HYBRID_MAP
+            //     ]
+            // }));
+            // map.setCurrentCity("海南");          // 设置地图显示的城市 此项是必须设置的
+            // map.enableScrollWheel
+            var options = {
+                onSearchComplete: function (results) {
+                    console.log(houseDetail_map);
+                    //显示地址
+                    for (var i = 0; i < results['Ar'].length; i++) {
+                        var m = results['Ar'][i];
+                        var myCompOverlay = new ComplexCustomOverlay(new BMap.Point(m.point.lng, m.point.lat), m.title, "");
+                        map.addOverlay(myCompOverlay);
+                    }
+
+                }
+            };
+            var local = new BMap.LocalSearch(map, options);
+
+            $("#house_article .card-map .nav li").on('click', function () {
+                $(this).addClass('cur').siblings().removeClass('cur')
+                map.clearOverlays();
+                local.search($(this).text());
+            })
+            /* var allA = document.querySelector("#btnMap").querySelectorAll("a");
+            //遍历地址
+            for (var i = 0; i < allA.length; i++) {
+                allA[i].addEventListener("click", function (e) {
+                    map.clearOverlays();
+                    var desc = this.getAttribute("data-desc");
+                    local.search(desc);
+                })
+            } */
+
+            function ComplexCustomOverlay(point, text, mouseoverText) {
+                this._point = point;
+                this._text = text;
+                this._overText = mouseoverText;
+            }
+            // 地图导航栏 点击变颜色事件
+            /* $("#btnMap .Themap-text").click(function(){
+            $(".Themap-text").removeClass("active1");
+            $(this).addClass("active1")
+            }); */
+
+            ComplexCustomOverlay.prototype = new BMap.Overlay();
+            ComplexCustomOverlay.prototype.initialize = function (map) {
+                this._map = map;
+                var div = this._div = document.createElement("div");
+                div.style.position = "absolute";
+                div.style.zIndex = BMap.Overlay.getZIndex(this._point.lat);
+                div.style.backgroundColor = "#EE5D5B";
+                div.style.border = "1px solid #BC3B3A";
+                div.style.color = "white";
+                div.style.height = "18px";
+                div.style.padding = "2px";
+                div.style.lineHeight = "18px";
+                div.style.whiteSpace = "nowrap";
+                div.style.MozUserSelect = "none";
+                div.style.fontSize = "12px"
+                var span = this._span = document.createElement("span");
+                div.appendChild(span);
+                span.appendChild(document.createTextNode(this._text));
+                var that = this;
+
+                var arrow = this._arrow = document.createElement("div");
+                //arrow.style.background = "url(http://map.baidu.com/fwmap/upload/r/map/fwmap/static/house/images/label.png) no-repeat";
+                arrow.style.position = "absolute";
+                arrow.style.width = "11px";
+                arrow.style.height = "10px";
+                arrow.style.top = "22px";
+                arrow.style.left = "10px";
+                arrow.style.overflow = "hidden";
+                div.appendChild(arrow);
+
+                div.onmouseover = function () {
+                    this.style.backgroundColor = "#6BADCA";
+                    this.style.borderColor = "#0000ff";
+                    this.getElementsByTagName("span")[0].innerHTML = that._overText;
+                    arrow.style.backgroundPosition = "0px -20px";
+                }
+
+                div.onmouseout = function () {
+                    this.style.backgroundColor = "#EE5D5B";
+                    this.style.borderColor = "#BC3B3A";
+                    this.getElementsByTagName("span")[0].innerHTML = that._text;
+                    arrow.style.backgroundPosition = "0px 0px";
+                }
+
+                map.getPanes().labelPane.appendChild(div);
+
+                return div;
+            }
+            ComplexCustomOverlay.prototype.draw = function () {
+                var map = this._map;
+                var pixel = map.pointToOverlayPixel(this._point);
+                this._div.style.left = pixel.x - parseInt(this._arrow.style.left) + "px";
+                this._div.style.top = pixel.y - 30 + "px";
+            }
+            // 百度地图API功能
+            var map = new BMap.Map("houseDetail_map");
+            var point = new BMap.Point(109.737259,19.992937);
+            map.centerAndZoom(point, 12);
+            var marker = new BMap.Marker(point);  // 创建标注
+            map.addOverlay(marker);              // 将标注添加到地图中
+
+            var label = new BMap.Label(maptitle,{offset:new BMap.Size(20,-10)});
+            marker.setLabel(label);
+        }
+        
+        $(function () {
+            // 户型切换
+            ;(function () {
+                var $card_hx = $('#house_article .card-hx')
+                var $hx_list = $card_hx.find('.cont li')
+
+                $card_hx.find('.wrap li').on('click', function () {
+                    var index = $(this).index()
+                    var $cur_list = $hx_list.eq(index)
+                    
+                    $(this).addClass('cur').siblings().removeClass('cur')
+                    $cur_list.addClass('cur').siblings().removeClass('cur')
+
+                    if ($cur_list.attr('img-changed') !== 'null' && $cur_list.attr('img-changed') === 'false') {
+                        $cur_list.attr('img-changed', true)
+
+                        $cur_list.find('img.sub-img').each(function (i, item) {
+                            var img_url = $(item).attr('data-substitute')
+                            $(item).attr('src', img_url)
+                        })
+                    }
+                })
+            })()
+            
+            // 楼盘切换 && 刷新
+            ;(function () {
+                var $card_recomment = $('.card-recommend')
+                var index = 0
+                var $house_list = $card_recomment.find('.list li')
+                
+                $card_recomment.find('.nav li').on('click', function () {
+                    index = $(this).index()
+                    var $cur_houselist = $house_list.eq(index)
+                    
+                    $(this).addClass('cur').siblings().removeClass('cur')
+                    $cur_houselist.addClass('cur').siblings().removeClass('cur')
+
+
+                    // 点击切换选项，将自定义图片链接放入src
+                    if ($cur_houselist.attr('img-changed') && $cur_houselist.attr('img-changed') === 'false') {
+                        $cur_houselist.attr('img-changed', true)
+
+                        $cur_houselist.find('img').each(function (i, item) {
+                            var img_url = $(item).attr('data-substitute')
+                            $(item).attr('src', img_url)
+                        })
+                    }
+                })
+
+                var id= <?=$val['id']?>;
+                var page1=2;
+                var page2=2;
+                var page3=2;
+
+                $("#refresh_house").click(function () {	
+                    if(index==0){
+                        $.get("/src/inc/get_house_other.php",{'t':'hot','pages':page1,'id':id}, function(result){
+                            $house_list.eq(index).html(result)
+
+                            if(page1>4){page1=1;}else{page1=page1+1;}
+                        });
+                    } else if(index==1){
+                        $.get("/src/inc/get_house_other.php",{'t':'hot','pages':page2,'id':id}, function(result){
+                            $house_list.eq(index).html(result)
+
+                            if(page2>4){page2=1;}else{page2=page2+1;}
+                        });
+                    } else if(index==2){
+                        $.get("/src/inc/get_house_other.php",{'t':'hot','pages':page3,'id':id}, function(result){
+                            $house_list.eq(index).html(result)
+
+                            /* $card_recomment.find(".list li.cur img.lazy").lazyload({
+                                threshold :0
+                            }); */
+
+                            if(page3>4){page3=1;}else{page3=page3+1;}
+                        });
+                    }
+
+                    
+                })
+            })()
+
+            
+            initialMap() // 初始化地图
+        })
+    </script>
 
 </body>
 

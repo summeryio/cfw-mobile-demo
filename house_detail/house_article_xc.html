@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title><?=WEB_SEONAME?></title>
+    <meta name="keywords" content="<?=WEB_SEOKEY?>" />
+    <meta name="description" content="<?=WEB_SEODESC?>" />
+    
+    <?php require('/tpl/wap2020/template/head.html');?>
+    
+<body>
+    
+    <div class="app house_detail" id="house_article_xc">
+        <?php require('/tpl/wap2020/house_detail/temp/header.html');?>
+        <div class="main">
+            <ul class="tab">
+                <li class="cur">实景图(2)</li>
+                <li>实景图(2)</li>
+                <li>实景图(2)</li>
+                <li>实景图(2)</li>
+            </ul>
+            <ul class="list">
+                <li>
+                    <div class="item">
+                        <div class="pic">
+                            <img src="http://img1.0898cfw.com/upload/0/27/64476CBC95C3AEFD06068670B0F1F935.jpg" alt="">
+                        </div>
+                        <p class="intro">实景图</p>
+                    </div>
+                    <div class="item">
+                        <div class="pic">
+                            <img src="http://img1.0898cfw.com/upload/0/27/64476CBC95C3AEFD06068670B0F1F935.jpg" alt="">
+                        </div>
+                        <p class="intro">实景图</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+        <?php require('/tpl/wap2020/house_detail/temp/get_discount.html');?>
+        <?php require('/tpl/wap2020/house_detail/temp/process.html');?>
+        <?php require('/tpl/wap2020/template/footer.html');?>
+    </div>
+
+    
+    <?php require('/tpl/wap2020/template/script.html');?>
+
+</body>
+
+</html>

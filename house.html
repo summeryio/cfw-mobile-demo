@@ -148,71 +148,69 @@
 	<script src="https://cdn.jsdelivr.net/npm/better-scroll@1.15.2/dist/bscroll.min.js"></script>
 	<script>window.BScroll || document.write('<script src="/tpl/wap2020/js/bscroll.min.js"><\/script>')</script>
 	<script>
-		var util = {
-			/**
-			 * 视图滑动并加载数据，添加懒加载
-			 * @param {pageCount} 数据的页数 
-			 * @param {path} 数据引用的路径  
-			 */
-			dropLoadData: function (pageCount, path, obj) {
-				var counter = 0;
-				var num = 10; // 每页展示几个
-				var pageStart = 2,pageEnd = 0;
-				var page=2;
+		/**
+		 * 视图滑动并加载数据，添加懒加载
+		 * @param {pageCount} 数据的页数 
+		 * @param {path} 数据引用的路径  
+		 */
+		function dropLoadData(pageCount, path, obj) {
+			var counter = 0;
+			var num = 10; // 每页展示几个
+			var pageStart = 2,pageEnd = 0;
+			var page=2;
 
-				$("img.lazy").lazyload({
-					threshold :100,
-					placeholder: '/tpl/wap2020/images/img_default.png'
-				});
+			$("img.lazy").lazyload({
+				threshold :100,
+				placeholder: '/tpl/wap2020/images/img_default.png'
+			});
+			
 				
-					
-				// if(pageCount > 1) {
-					$('.load-wrapper').dropload({
-						scrollArea : window,
-						domDown : {
-							domClass   : 'dropload-down',
-							domRefresh : '<div class="dropload-refresh">↑上拉加载更多</div>',
-							domLoad    : '<div class="dropload-load"><span class="loading"></span>加载中...</div>',
-							domNoData  : '<div class="dropload-noData">- 我是有底线的 -</div>'
-						},
-						loadDownFn : function(me){
-							console.log('data')
-							var template = '';
-							counter++;
-							pageEnd = num * counter;
-							pageStart = pageEnd - num;
+			// if(pageCount > 1) {
+				$('.load-wrapper').dropload({
+					scrollArea : window,
+					domDown : {
+						domClass   : 'dropload-down',
+						domRefresh : '<div class="dropload-refresh">↑上拉加载更多</div>',
+						domLoad    : '<div class="dropload-load"><span class="loading"></span>加载中...</div>',
+						domNoData  : '<div class="dropload-noData">- 我是有底线的 -</div>'
+					},
+					loadDownFn : function(me){
+						console.log('data')
+						var template = '';
+						counter++;
+						pageEnd = num * counter;
+						pageStart = pageEnd - num;
 
-							$.get("/src/inc/"+path+"",{'pages':page, 'c1': obj.c1, 'c2': obj.c2, 'c3': obj.c3, 'c4': obj.c4, 'c5': obj.c5, 'c6': obj.c6}, function(result){
-								if(result=='0'){
-									return;
-								}
-								template = result
+						$.get("/src/inc/"+path+"",{'pages':page, 'c1': obj.c1, 'c2': obj.c2, 'c3': obj.c3, 'c4': obj.c4, 'c5': obj.c5, 'c6': obj.c6}, function(result){
+							if(result=='0'){
+								return;
+							}
+							template = result
 
-								if(page >= pageCount) {
-									me.lock();
-									me.noData();
-									return;
-								}
-								page=page+1;      
-							})
+							if(page >= pageCount) {
+								me.lock();
+								me.noData();
+								return;
+							}
+							page=page+1;      
+						})
 
-							setTimeout(function(){
-								$('.load-wrapper .list').append(template);
-								$("img.lazy").lazyload({
-									threshold :100,
-									placeholder: '/tpl/wap2020/images/img_default.png'
-								});
-								// 每次数据加载完，必须重置
-								me.resetload();
-							},1000);
-						},
-						threshold : 50
-					});
-				// } else {
-				// 	console.log('no-data')
-				// 	$('.dropload-down').hide()
-				// }
-			}
+						setTimeout(function(){
+							$('.load-wrapper .list').append(template);
+							$("img.lazy").lazyload({
+								threshold :100,
+								placeholder: '/tpl/wap2020/images/img_default.png'
+							});
+							// 每次数据加载完，必须重置
+							me.resetload();
+						},1000);
+					},
+					threshold : 50
+				});
+			// } else {
+			// 	console.log('no-data')
+			// 	$('.dropload-down').hide()
+			// }
 		}
 
 		
@@ -253,7 +251,7 @@
 			var pageCount = <?php echo $listData['PageCount'] == '' ? 0 : $listData['PageCount']; ?>;
 
 			if (dataCount > 0 && pageCount > 1) {
-				util.dropLoadData(pageCount, 'get_house2018.php', {'c1':<?=$c1?>,'c2':<?=$c2?>,'c3':<?=$c3?>,'c4':<?=$c4?>,'c5':<?=$c5?>,'c6':<?=$c6?>})
+				dropLoadData(pageCount, 'get_house2018.php', {'c1':<?=$c1?>,'c2':<?=$c2?>,'c3':<?=$c3?>,'c4':<?=$c4?>,'c5':<?=$c5?>,'c6':<?=$c6?>})
 			}
 
 

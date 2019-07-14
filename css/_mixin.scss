@@ -76,7 +76,7 @@
     }
 }
 @mixin t_hide($width: 100%) {
-    width: $width;
+    max-width: $width;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -90,4 +90,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+@mixin ab_full {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
 }

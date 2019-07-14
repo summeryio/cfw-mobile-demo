@@ -64,3 +64,18 @@ function submitPhone(cat, phone, title) {
 		return true;
 	});
 }
+
+
+// 楼盘详情公共
+;(function () {
+	$(window).on('scroll', function () {
+		if ($(this).scrollTop() > 300) {
+			$('#house_article #houseDetail_header').show()
+		} else {
+			$('#house_article #houseDetail_header').hide()
+		}
+	})
+	
+	var navid = util.getQueryString('navid')
+	$('#houseDetail_header .nav a').eq(navid).addClass('cur').siblings().removeClass('cur')
+})()

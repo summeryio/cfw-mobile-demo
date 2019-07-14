@@ -444,7 +444,6 @@ body.no-scroll {
 
 // 楼盘详情
 #houseDetail_header {
-    display: none;
     position: fixed;
     z-index: 999;
     top: 0;
@@ -461,6 +460,7 @@ body.no-scroll {
     .nav {
         display: flex;
         justify-content: space-around;
+        @include border_b();
 
         a {
             padding: .2rem 0;
@@ -472,6 +472,7 @@ body.no-scroll {
         }
     }
     .phone {
+        display: none;
         height: .75rem;
         line-height: .75rem;
         text-align: center;
@@ -527,17 +528,33 @@ body.no-scroll {
         }
     }
 }
+#get_discount {
+    position: relative;
+    width: 97%;
+    margin: .2rem auto;
 
+    .text {
+        @include ab_full();
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        @include c_white();
+
+        h6 {
+            font-size: .6rem;
+            padding-bottom: .1rem;
+        }
+    }
+}
 .house_detail {
-    padding-top: 0;
+    padding-top: 1.8rem;
     background-color: #f3f4f7;
-
     .main {
         width: 97%;
+        min-height: 6rem;
         margin: 0 auto;
         position: relative;
-        top: -.8rem;
-        margin-bottom: -.8rem;
     }
     .card {
         @include br_sm();
@@ -546,7 +563,31 @@ body.no-scroll {
         margin-top: .2rem;
     }
 }
+
 #house_article {
+    padding-top: 0;
+
+    .empty-data {
+        height: 4rem;
+
+        i {
+            font-size: 1rem;
+        }
+        p {
+            line-height: 1.2;
+            @include f_sm();
+        }
+    }
+    .main {
+        top: -.8rem;
+        margin-bottom: -.8rem;
+    }
+    #houseDetail_header {
+        display: none;
+    }
+    #houseDetail_header .phone {
+        display: block;
+    }
     #copyright {
         display: none;
     }
@@ -598,6 +639,7 @@ body.no-scroll {
         .title {
             padding: .2rem 0;
             @include clearfix();
+            
             h3 {
                 @include fl();
                 @include f_lg();
@@ -605,7 +647,7 @@ body.no-scroll {
                 @include t_hide(60%);
             }
             .status {
-                @include fl();
+                margin-left: .1rem;
                 padding: .04rem .1rem;
                 color: #469efc;
                 background-color: #def0fb;
@@ -640,8 +682,8 @@ body.no-scroll {
             padding: .3rem 0;
             li {
                 display: inline-block;
-                margin-right: .05rem;
-                padding: .05rem;
+                margin-right: .06rem;
+                padding: .06rem;
                 @include f_xs();
                 @include c_mid();
                 @include bc_gray();
@@ -775,9 +817,14 @@ body.no-scroll {
         }
         .cont {
             li {
+                display: none;
                 height: 3.68rem;
                 overflow: hidden;
                 white-space: nowrap;
+
+                &.cur {
+                    display: block;
+                }
             }
             .wrapper {
                 width: 100%;
@@ -898,6 +945,7 @@ body.no-scroll {
         position: relative;
         height: 1.95rem;
         margin-top: .2rem;
+        background-color: #ddd;
 
         img {
             width: 100%;
@@ -965,6 +1013,7 @@ body.no-scroll {
                 line-height: .5rem;
                 text-align: center;
                 @include br_sm();
+                @include f_sm();
 
                 &.cur {
                     @include c_white();
@@ -976,9 +1025,10 @@ body.no-scroll {
             height: 4.25rem;
         }
         .local {
-            @include f_sm();
+            @include f_xs();
             @include c_mid();
             @include t_hide();
+            margin-top: .1rem;
         }
     }
     .card-recommend {
@@ -1006,8 +1056,15 @@ body.no-scroll {
             }
         }
         .list {
-            @include dflex();
-            flex-wrap: wrap;
+            li {
+                @include dflex();
+                display: none;
+                flex-wrap: wrap;
+
+                &.cur {
+                    display: flex;
+                }
+            }
             a {
                 width: 49.2%;
                 margin-top: .2rem;
@@ -1057,6 +1114,7 @@ body.no-scroll {
             .btn {
                 width: 49.2%;
                 line-height: .8rem;
+                text-align: center;
                 @include bc_white();
                 @include f_sm();
                 @include c_mid();
@@ -1068,6 +1126,174 @@ body.no-scroll {
                 font-size: .32rem;
                 padding-left: .1rem;
             }
+        }
+    }
+}
+#house_article_xq {
+    .banner {
+        position: relative;
+        
+        img {}
+        .intro {
+            @include ab_full();
+            @include c_white();
+            padding: .2rem;
+        }
+        .t {
+            i {
+                display: inline-block;
+                margin-left: .2rem;
+                @include button(.05rem, .2rem, #fff, #0674fb);
+                @include f_xs();
+            }
+        }
+        .price {
+            line-height: 2.2;
+            @include f_sm();
+
+            span {
+                @include c_orange();
+                @include f_md();
+            }
+        }
+        .tag {
+            li {
+                display: inline-block;
+                margin-right: .1rem;
+                @include button(.05rem, .1rem, #666, #f2f2f2);
+                @include f_xs();
+            }
+        }
+        .btn {
+            position: absolute;
+            top: 35%;
+            right: .2rem;
+            @include button(.05rem, .1rem, #0099eb, #ffffff);
+        }
+    }
+    .card {
+        padding: 0;
+    }
+    .card-info {
+        .title {
+            padding: .3rem .2rem;
+            border-bottom: 1px solid #d6d6d6;
+        }
+        dd {
+            padding: .2rem .2rem;
+            line-height: 1.5;
+            @include f_sm();
+            @include border_b();
+        }
+        .key {
+            @include c_light();
+        }
+    }
+}
+#house_article_hx {
+    .tab {
+        padding: .2rem 0;
+        
+        li {
+            display: inline-block;
+            margin-bottom: .1rem;
+            @include button (.15rem, .2rem, #333333, #ffffff);
+            @include br_md();
+            @include f_sm();
+            &.cur {
+                color: #fff;
+                background-color: #ff5849;
+            }
+        }
+    }
+    .list {
+        li {
+            
+        }
+        .item {
+            position: relative;
+            margin-top: .2rem;
+            padding: .2rem;
+            height: 2rem;
+            @include bc_white();
+        }
+        .pic {
+            height: 100%;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .intro {
+            @include f_sm();
+            height: 100%;
+            line-height: 1.2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            line-height: 2;
+            
+            .t {}
+            .area {
+                @include c_light();
+            }
+            .price {
+                @include c_light();
+                span {
+                    @include f_md();
+                    @include c_red();
+                }
+            }
+        }
+        .btn {
+            position: absolute;
+            right: .1rem;
+            top: 30%;
+            @include button(.1rem, .2rem, #ffffff, #fc7d6d);
+            @include br_md();
+            @include f_sm();
+        }
+    }
+}
+#house_article_xc {
+    .tab {
+        padding: .2rem 0;
+        
+        li {
+            display: inline-block;
+            margin-bottom: .1rem;
+            @include button (.15rem, .2rem, #333333, #ffffff);
+            @include br_md();
+            @include f_sm();
+            &.cur {
+                color: #fff;
+                background-color: #ff5849;
+            }
+        }
+    }
+    .list {
+        li {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: nowrap;
+        }
+        .item {
+            position: relative;
+            width: 49.2%;
+            margin-top: .2rem;
+            @include bc_white();
+        }
+        .pic {
+            height: 2rem;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .intro {
+            text-align: center;
+            line-height: 1.6;
+            @include f_sm();
         }
     }
 }
