@@ -13,65 +13,42 @@
         <?php require('/tpl/wap2020/house_detail/temp/header.html');?>
         <div class="main">
             <ul class="tab">
-                <li class="cur">一居(2)</li>
-                <li>一居(2)</li>
-                <li>一居(2)</li>
-                <li>一居(2)</li>
-                <li>一居(2)</li>
+                <?php 				 
+                    if(count($huxing)>0){
+                    foreach($huxing as $key=>$val){
+                        echo '<li class="'.($key==0?'cur':'').'">'.$val['title'].'('.count($val['data']).')</li>';
+                    }}
+                ?>
             </ul>
             <ul class="list">
-                <li>
+                <?php 				 
+                if(count($huxing)>0){
+                foreach($huxing as $key=>$val){?>
+                <li class="<?=($key==0?'cur':'')?>" img-changed="<?=($key==0?'null':'false')?>">
+                    <?php           
+                        if(count($val['data'])>0){
+                        foreach($val['data'] as $k=>$vs){
+                    ?>
                     <div class="item row">
                         <div class="pic col-xs-4">
-                            <img src="http://img1.0898cfw.com/upload/0/27/14E8D984554A8E34F23611337C1CC24D.jpg" alt="">
+                            <?php           
+                                if($key == 0){
+                                    echo '<img class="lazy" src="/tpl/wap2020/images/img_default.png" data-original="'.WebFun::OssPic($vs['pic']).'" onerror="loadIMGErr(this)">';
+                                } else {
+                                    echo '<img class="sub-img" src="/tpl/wap2020/images/img_default.png" data-substitute="'.WebFun::OssPic($vs['pic']).'" onerror="loadIMGErr(this)">';
+                                }
+                            ?>
                         </div>
                         <div class="intro col-xs-8">
-                            <p class="t">一房两厅一卫</p>
-                            <p class="area">建筑面积：61.85㎡</p>
-                            <p class="price">价格：<span>54</span>万/套</p>
+                            <p class="t"><?=$vs['title']?></p>
+                            <p class="area">建筑面积：<?=$vs['area']?>㎡</p>
+                            <p class="price">价格：<span><?=(is_numeric($vs['area'])?round($vs['area']*$rows['price']/10000):'-')?></span>万/套</p>
                         </div>
                         <button class="btn">获取底价</button>
                     </div>
+                    <?php }}?>
                 </li>
-                <li>
-                    <div class="item row">
-                        <div class="pic col-xs-4">
-                            <img src="http://img1.0898cfw.com/upload/0/27/14E8D984554A8E34F23611337C1CC24D.jpg" alt="">
-                        </div>
-                        <div class="intro col-xs-8">
-                            <p class="t">一房两厅一卫</p>
-                            <p class="area">建筑面积：61.85㎡</p>
-                            <p class="price">价格：<span>54</span>万/套</p>
-                        </div>
-                        <button class="btn">获取底价</button>
-                    </div>
-                </li>
-                <li>
-                    <div class="item row">
-                        <div class="pic col-xs-4">
-                            <img src="http://img1.0898cfw.com/upload/0/27/14E8D984554A8E34F23611337C1CC24D.jpg" alt="">
-                        </div>
-                        <div class="intro col-xs-8">
-                            <p class="t">一房两厅一卫</p>
-                            <p class="area">建筑面积：61.85㎡</p>
-                            <p class="price">价格：<span>54</span>万/套</p>
-                        </div>
-                        <button class="btn">获取底价</button>
-                    </div>
-                </li>
-                <li>
-                    <div class="item row">
-                        <div class="pic col-xs-4">
-                            <img src="http://img1.0898cfw.com/upload/0/27/14E8D984554A8E34F23611337C1CC24D.jpg" alt="">
-                        </div>
-                        <div class="intro col-xs-8">
-                            <p class="t">一房两厅一卫</p>
-                            <p class="area">建筑面积：61.85㎡</p>
-                            <p class="price">价格：<span>54</span>万/套</p>
-                        </div>
-                        <button class="btn">获取底价</button>
-                    </div>
-                </li>
+                <?php }}?>
             </ul>
         </div>
         
@@ -82,6 +59,32 @@
 
     
     <?php require('/tpl/wap2020/template/script.html');?>
+
+    <script>
+        $(function () {
+            ;(function () {
+                var $house_article_hx = $('#house_article_hx')
+                var $hx_list = $house_article_hx.find('.list li')
+
+                $house_article_hx.find('.tab li').on('click', function () {
+                    var index = $(this).index()
+                    var $cur_list = $hx_list.eq(index)
+                    
+                    $(this).addClass('cur').siblings().removeClass('cur')
+                    $cur_list.addClass('cur').siblings().removeClass('cur')
+
+                    if ($cur_list.attr('img-changed') !== 'null' && $cur_list.attr('img-changed') === 'false') {
+                        $cur_list.attr('img-changed', true)
+
+                        $cur_list.find('img.sub-img').each(function (i, item) {
+                            var img_url = $(item).attr('data-substitute')
+                            $(item).attr('src', img_url)
+                        })
+                    }
+                })
+            })()
+        })
+    </script>
 
 </body>
 

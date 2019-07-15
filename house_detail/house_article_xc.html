@@ -13,26 +13,37 @@
         <?php require('/tpl/wap2020/house_detail/temp/header.html');?>
         <div class="main">
             <ul class="tab">
-                <li class="cur">实景图(2)</li>
-                <li>实景图(2)</li>
-                <li>实景图(2)</li>
-                <li>实景图(2)</li>
+                <?php 				 
+                    if(count($mainphoto)>0){
+                    foreach($mainphoto as $key=>$val){
+                        echo '<li class="'.($key==0?'cur':'').'">'.$val['title'].'('.count($val['data']).')</li>';
+                    }}
+                ?>
             </ul>
             <ul class="list">
-                <li>
+                <?php 				 
+                if(count($mainphoto)>0){
+                foreach($mainphoto as $key=>$val){?>
+                <li class="<?=($key==0?'cur':'')?>" img-changed="<?=($key==0?'null':'false')?>">
+                    <?php           
+                        if(count($val['data'])>0){
+                        foreach($val['data'] as $k=>$vs){
+                    ?>
                     <div class="item">
                         <div class="pic">
-                            <img src="http://img1.0898cfw.com/upload/0/27/64476CBC95C3AEFD06068670B0F1F935.jpg" alt="">
+                            <?php           
+                                if($key == 0){
+                                    echo '<img class="lazy" src="/tpl/wap2020/images/img_default.png" data-original="'.WebFun::OssPic($vs['pic']).'" onerror="loadIMGErr(this)">';
+                                } else {
+                                    echo '<img class="sub-img" src="/tpl/wap2020/images/img_default.png" data-substitute="'.WebFun::OssPic($vs['pic']).'" onerror="loadIMGErr(this)">';
+                                }
+                            ?>
                         </div>
                         <p class="intro">实景图</p>
                     </div>
-                    <div class="item">
-                        <div class="pic">
-                            <img src="http://img1.0898cfw.com/upload/0/27/64476CBC95C3AEFD06068670B0F1F935.jpg" alt="">
-                        </div>
-                        <p class="intro">实景图</p>
-                    </div>
+                    <?php }}?>
                 </li>
+                <?php }}?>
             </ul>
         </div>
         
@@ -43,6 +54,32 @@
 
     
     <?php require('/tpl/wap2020/template/script.html');?>
+
+    <script>
+        $(function () {
+            ;(function () {
+                var $house_article_xc = $('#house_article_xc')
+                var $hx_list = $house_article_xc.find('.list li')
+
+                $house_article_xc.find('.tab li').on('click', function () {
+                    var index = $(this).index()
+                    var $cur_list = $hx_list.eq(index)
+                    
+                    $(this).addClass('cur').siblings().removeClass('cur')
+                    $cur_list.addClass('cur').siblings().removeClass('cur')
+
+                    if ($cur_list.attr('img-changed') !== 'null' && $cur_list.attr('img-changed') === 'false') {
+                        $cur_list.attr('img-changed', true)
+
+                        $cur_list.find('img.sub-img').each(function (i, item) {
+                            var img_url = $(item).attr('data-substitute')
+                            $(item).attr('src', img_url)
+                        })
+                    }
+                })
+            })()
+        })
+    </script>
 
 </body>
 

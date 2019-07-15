@@ -15,12 +15,29 @@
             <div class="banner">
                 <img src="/tpl/wap2020/house_detail/img/xq_banner.png">
                 <div class="intro">
-                    <p class="t">四季康城五期山海一品居 <i>新开盘</i></p>
-                    <p class="price">均价：<span>8800元/㎡</span>(有效时间7月19日)</p>
+                    <p class="t">
+                        <?=$rows['title']?>
+                        <i><?php
+                            foreach ($mcf_category[3]['subdir'] as $valaa) {
+                                if($valaa['id']==$rows['typeid']){echo  $valaa['title'];break;}                                            
+                        }?></i>
+                    </p>
+                    <p class="price">均价：<span><?=($rows['price']==0?'待定':$rows['price'].'元/㎡')?></span>(有效时间<?=date('n月j日', strtotime("+5 day"))?>)</p>
                     <ul class="tag">
-                        <li>温泉社区</li>
-                        <li>温泉社区</li>
-                        <li>温泉社区</li>
+                        <?php
+                            $i=1;
+                            if($rows['catid']!=''){
+                                $tmp=explode(',',$rows['catid']);
+                                foreach($tmp as $vs1){
+                                    if($vs1!=''){
+                                        foreach($mcf_category[1]['subdir'] as $val111){    
+                                            if($val111['id']==$vs1){echo  '<li>'.$val111['title'].'</li>';$i++;break;}
+                                        }
+                                        if($i==4) break;
+                                    }
+                                }
+                            }
+                        ?>
                     </ul>
                     <button class="btn">报名看房</button>
                 </div>
@@ -29,19 +46,159 @@
                 <dt class="title">基本信息</dt>
                 <dd>
                     <span class="key">项目名:</span>
-                    <span class="value">四季康城五期山海一品居</span>
+                    <span class="value"><?=$rows['title']?></span>
                 </dd>
                 <dd>
-                    <span class="key">项目名:</span>
-                    <span class="value">四季康城五期山海一品居</span>
+                    <span class="key">开发商:</span>
+                    <span class="value"><?=$mrows['kfs']?></span>
                 </dd>
                 <dd>
-                    <span class="key">项目名:</span>
-                    <span class="value">四季康城五期山海一品居</span>
+                    <span class="key">房屋产权:</span>
+                    <span class="value"><?=$mrows['lp_year']?>年</span>
                 </dd>
                 <dd>
-                    <span class="key">项目名:</span>
-                    <span class="value">澄迈县金江镇（金马大道与海榆西线交汇处）澄迈县金江镇（金马大道与海榆西线交汇处）</span>
+                    <span class="key">装修情况:</span>
+                    <span class="value">
+                        <?php $tmp=explode(',',$mrows['lp_fitment']);
+                            if(count($tmp)>0){
+                                foreach($tmp as $val){
+                                    if($val!=''){
+                                         foreach ($mcf_category[4]['subdir'] as $vs1) {
+                                            if($vs1['id']==$val){
+                                                echo $vs1['title'],'&nbsp;&nbsp;';break;
+                                            }
+                                           
+                                        }
+                                }}
+                            }
+                        ?>
+                    </span>
+                </dd>
+                <dd>
+                    <span class="key">楼盘特色:</span>
+                    <span class="value">
+                        <?php  
+                            if($rows['catid']!=''){
+                                $tmp=explode(',',$rows['catid']);
+                                foreach($tmp as $vs){
+                                    if($vs!=''){
+                                   foreach($mcf_category[1]['subdir']  as $val22){
+                                            if($val22['id']==$vs){echo  $val22['title'].' ';$i++;break;}   
+                                    }
+                                    }
+                                }
+                            }                
+                        ?>
+                    </span>
+                </dd>
+                <dd>
+                    <span class="key">楼盘地址:</span>
+                    <span class="value"><?=$mrows['address']?></span>
+                </dd>
+            </dl>
+            <dl class="card card-info">
+                <dt class="title">销售情况</dt>
+                <dd>
+                    <span class="key">销售状态:</span>
+                    <span class="value">
+                        <?php
+                            foreach ($mcf_category[3]['subdir'] as $valaa) {
+                                    if($valaa['id']==$rows['typeid']){echo  $valaa['title'];break;}    
+                            }        
+                        ?>
+                    </span>
+                </dd>
+                <dd>
+                    <span class="key">开盘时间:</span>
+                    <span class="value"><?=$mrows['selltime']?></span>
+                </dd>
+                <dd>
+                    <span class="key">交房时间:</span>
+                    <span class="value"><?=$mrows['completion']?></span>
+                </dd>
+                <dd>
+                    <span class="key">预售证号:</span>
+                    <span class="value"><?=$mrows['lp_yushou_num']?></span>
+                </dd>
+                <dd>
+                    <span class="key">售楼电话:</span>
+                    <span class="value"><a href="tel:<?=Tels::wap($rows['wap_phone'])?>"><?=$rows['phone']?></a></span>
+                </dd>
+                <dd>
+                    <span class="key">售 楼 处:</span>
+                    <span class="value"><?=$mrows['sell_address']?></span>
+                </dd>
+            </dl>
+            <dl class="card card-info">
+                <dt class="title">小区规划</dt>
+                <dd>
+                    <span class="key">物业公司:</span>
+                    <span class="value"><?=$mrows['lp_company']?></span>
+                </dd>
+                <dd>
+                    <span class="key">物 业 费:</span>
+                    <span class="value"><?=($mrows['lp_costs']==''?'待定':$mrows['lp_costs'].'元/㎡/月')?></span>
+                </dd>
+                <dd>
+                    <span class="key">规划户数:</span>
+                    <span class="value"><?=$mrows['lp_number']?></span>
+                </dd>
+                <dd>
+                    <span class="key">规划面积:</span>
+                    <span class="value"><?=$mrows['lp_totalarea']?>㎡</span>
+                </dd>
+                <dd>
+                    <span class="key">建筑面积:</span>
+                    <span class="value"><?=$mrows['lp_area']?>㎡</span>
+                </dd>
+                <dd>
+                    <span class="key">容积率:</span>
+                    <span class="value"><?=$mrows['lp_volume']?></span>
+                </dd>
+                <dd>
+                    <span class="key">绿化率:</span>
+                    <span class="value"><?=$mrows['lp_green']?>%</span>
+                </dd>
+            </dl>
+            <dl class="card card-info">
+                <dt class="title">项目配套</dt>
+                <?=($mrows['lp_edu']==''? '' : '<dd>
+                    <span class="key">学校:</span>
+                    <span class="value">'.$mrows['lp_edu'].'</span>
+                </dd>')?>
+                <?=($mrows['lp_gouwu']==''? '' : '<dd>
+                    <span class="key">购物:</span>
+                    <span class="value">'.$mrows['lp_gouwu'].'</span>
+                </dd>')?>
+                <?=($mrows['lp_hospital']==''? '' : '<dd>
+                    <span class="key">医院:</span>
+                    <span class="value">'.$mrows['lp_hospital'].'</span>
+                </dd>')?>
+                <?=($mrows['lp_bank']==''? '' : '<dd>
+                    <span class="key">银行:</span>
+                    <span class="value">'.$mrows['lp_bank'].'</span>
+                </dd>')?>
+                <?=($mrows['lp_yule']==''? '' : '<dd>
+                    <span class="key">娱乐:</span>
+                    <span class="value">'.$mrows['lp_yule'].'</span>
+                </dd>')?>
+                <?=($mrows['lp_canyin']==''? '' : '<dd>
+                    <span class="key">餐饮:</span>
+                    <span class="value">'.$mrows['lp_canyin'].'</span>
+                </dd>')?>
+                <?=($mrows['lp_csc']==''? '' : '<dd>
+                    <span class="key">生活:</span>
+                    <span class="value">'.$mrows['lp_csc'].'</span>
+                </dd>')?>
+                <?=($mrows['lp_bus']==''? '' : '<dd>
+                    <span class="key">交通:</span>
+                    <span class="value">'.$mrows['lp_bus'].'</span>
+                </dd>')?>
+            </dl>
+            <dl class="card card-info">
+                <dt class="title">项目介绍</dt>
+                <dd>
+                    <span class="value"><?=$mrows['content']?></span>
                 </dd>
             </dl>
 
