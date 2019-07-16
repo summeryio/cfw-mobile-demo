@@ -65,7 +65,8 @@ body,html {
 }
 body {
     font-family: "PingFang-SC-Regular",Helvetica,"sans-serif";
-    font-size: .32rem;
+    // font-size: .32rem;
+    font-size: .36rem;
     -webkit-text-size-adjust: 100%!important;
     -ms-text-size-adjust: 100%!important;
     text-size-adjust: 100%!important;
@@ -82,7 +83,8 @@ button,input {
     border: none;
     background-color: #fff;
     outline: none;
-    font-size: .32rem;
+    // font-size: .32rem;
+    font-size: .36rem;
 
     -moz-appearance:none;
     -webkit-appearance : none ;/*解决ios上按钮的圆角问题*/

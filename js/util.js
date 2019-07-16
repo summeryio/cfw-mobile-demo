@@ -1,5 +1,6 @@
 var util = {
     /**
+     * dropLoadData
      * 视图滑动并加载数据，添加懒加载
      * @param {pageCount} 数据的页数 
      * @param {path} 数据引用的路径  
@@ -65,9 +66,50 @@ var util = {
             $('.dropload-down').hide()
         }
     },
+
+    /**
+     * getQueryString
+     * 得到地址栏参数
+     * @param {key} 需要的得到的key
+     * www.xxx.com?id=111   util.getQueryString('id')
+     */
     getQueryString: function (key) {
         var reg = new RegExp("(^|&)"+ key +"=([^&]*)(&|$)");
         var r = window.location.search.substr(1).match(reg);
         if(r!=null)return  unescape(r[2]); return null;
+    },
+
+    /**
+     * getScript
+     * 动态加载js文件
+     */
+    getScript: function(url, callback) {
+        var head = document.getElementsByTagName('head')[0],
+            js = document.createElement('script');
+
+        js.setAttribute('type', 'text/javascript'); 
+        js.setAttribute('src', url); 
+
+		// head.appendChild(js);
+		$(document.body).append(js);
+
+        //执行回调
+        var callbackFn = function(){
+                if(typeof callback === 'function'){
+                    callback();
+                }
+            };
+
+        if (document.all) { //IE
+            js.onreadystatechange = function() {
+                if (js.readyState == 'loaded' || js.readyState == 'complete') {
+                    callbackFn();
+                }
+            }
+        } else {
+            js.onload = function() {
+                callbackFn();
+            }
+        }
     }
 }

@@ -13,7 +13,7 @@
         <?php require('/tpl/wap2020/house_detail/temp/header.html');?>
         <div class="main">
             <div class="banner">
-                <img src="/tpl/wap2020/house_detail/img/xq_banner.png">
+                <img src="/tpl/wap2020/images/detail/xq_banner.png">
                 <div class="intro">
                     <p class="t">
                         <?=$rows['title']?>
@@ -39,7 +39,7 @@
                             }
                         ?>
                     </ul>
-                    <button class="btn">报名看房</button>
+                    <button class="btn showing_dialog" data-id="<?=$rows['id']?>" data-name="报名看房" data-text="全天候贴心服务；专车接送，免费餐饮住宿<br/>专业带看解答疑惑；看房活动优惠多多">报名看房</button>
                 </div>
             </div>
             <dl class="card card-info">
@@ -206,11 +206,16 @@
         
         <?php require('/tpl/wap2020/house_detail/temp/get_discount.html');?>
         <?php require('/tpl/wap2020/house_detail/temp/process.html');?>
-        <?php require('/tpl/wap2020/template/footer.html');?>
     </div>
 
     
     <?php require('/tpl/wap2020/template/script.html');?>
+
+    <script>
+        $(function () {
+
+        })
+    </script>
 
 </body>
 

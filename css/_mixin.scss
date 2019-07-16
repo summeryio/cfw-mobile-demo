@@ -3,10 +3,16 @@
 // $lr-mg: .1rem;
 
 // 字体大小
-@mixin f_lg() {font-size: .36rem;}
-@mixin f_md() {font-size: .32rem;}
-@mixin f_sm() {font-size: .28rem;}
-@mixin f_xs() {font-size: .24rem;}
+// @mixin f_lg() {font-size: .36rem;}
+// @mixin f_md() {font-size: .32rem;}
+// @mixin f_sm() {font-size: .28rem;}
+// @mixin f_xs() {font-size: .24rem;}
+
+@mixin f_lg() {font-size: .4rem;}
+@mixin f_md() {font-size: .36rem;}
+@mixin f_sm() {font-size: .32rem;}
+@mixin f_xs() {font-size: .28rem;}
+
 @mixin f_bold() {font-weight: bold;}
 
 // 字体颜色

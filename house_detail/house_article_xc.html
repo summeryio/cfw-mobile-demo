@@ -24,23 +24,25 @@
                 <?php 				 
                 if(count($mainphoto)>0){
                 foreach($mainphoto as $key=>$val){?>
-                <li class="<?=($key==0?'cur':'')?>" img-changed="<?=($key==0?'null':'false')?>">
+                <li class="<?=($key==0?'cur':'')?> photo-gallery" img-changed="<?=($key==0?'null':'false')?>" data-pswp-uid="<?=($key + 1)?>">
                     <?php           
                         if(count($val['data'])>0){
                         foreach($val['data'] as $k=>$vs){
                     ?>
-                    <div class="item">
+                    <figure class="item">
                         <div class="pic">
-                            <?php           
-                                if($key == 0){
-                                    echo '<img class="lazy" src="/tpl/wap2020/images/img_default.png" data-original="'.WebFun::OssPic($vs['pic']).'" onerror="loadIMGErr(this)">';
-                                } else {
-                                    echo '<img class="sub-img" src="/tpl/wap2020/images/img_default.png" data-substitute="'.WebFun::OssPic($vs['pic']).'" onerror="loadIMGErr(this)">';
-                                }
-                            ?>
+                            <a href="<?= WebFun::OssPic($vs['pic']) ?>" data-size="900x600">
+                                <?php           
+                                    if($key == 0){
+                                        echo '<img class="lazy" src="/tpl/wap2020/images/img_default.png" data-original="'.WebFun::OssPic($vs['pic']).'" onerror="loadIMGErr(this)">';
+                                    } else {
+                                        echo '<img class="sub-img" src="/tpl/wap2020/images/img_default.png" data-substitute="'.WebFun::OssPic($vs['pic']).'" onerror="loadIMGErr(this)">';
+                                    }
+                                ?>
+                            </a>
                         </div>
-                        <p class="intro">实景图</p>
-                    </div>
+                        <figcaption class="intro"><?=$vs['title']?></figcaption>
+                    </figure>
                     <?php }}?>
                 </li>
                 <?php }}?>
@@ -49,7 +51,6 @@
         
         <?php require('/tpl/wap2020/house_detail/temp/get_discount.html');?>
         <?php require('/tpl/wap2020/house_detail/temp/process.html');?>
-        <?php require('/tpl/wap2020/template/footer.html');?>
     </div>
 
     
@@ -80,6 +81,9 @@
             })()
         })
     </script>
+
+
+    <?php require('/tpl/wap2020/house_detail/temp/photoswipe.html');?>
 
 </body>
 

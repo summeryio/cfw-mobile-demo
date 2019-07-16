@@ -457,6 +457,9 @@ body.no-scroll {
         padding: 0 .15rem;
         border-bottom: 1px solid #d6d6d6;
     }
+    .title {
+        @include t_hide(70%);
+    }
     .nav {
         display: flex;
         justify-content: space-around;
@@ -644,7 +647,7 @@ body.no-scroll {
                 @include fl();
                 @include f_lg();
                 @include f_bold();
-                @include t_hide(60%);
+                @include t_hide(58%);
             }
             .status {
                 margin-left: .1rem;
@@ -655,8 +658,7 @@ body.no-scroll {
                 vertical-align: bottom;
             }
             .get {
-                width: 1.5rem;
-                @include t_hide(1.5rem);
+                @include t_hide(auto);
                 @include fr();
                 @include c_orange();
                 @include br_md();
@@ -835,8 +837,12 @@ body.no-scroll {
             .item {
                 display: inline-block;
                 margin-right: .1rem;
-                width: 3rem;
+                width: 3.6rem;
                 border: 1px solid #e3e3e3;
+
+                &:last-child {
+                    margin-right: 0;
+                }
             }
             img {
                 width: 100%;
@@ -852,14 +858,14 @@ body.no-scroll {
                 @include clearfix();
                 span {
                     @include fl();
-                    @include t_hide(60%);
+                    @include t_hide(62%);
                     line-height: .35rem;
                 }
                 button {
-                    @include fl();
+                    @include fr();
                     font-size: .2rem;
-                    @include button(0, 0, #ffffff, #fc7d6d);
-                    @include t_hide(40%);
+                    @include button(0, 2%, #ffffff, #fc7d6d);
+                    @include t_hide(34%);
                     @include br_md();
                 }
             }
@@ -1129,10 +1135,15 @@ body.no-scroll {
             }
         }
     }
+
+    .pswp__caption__center .specific button {
+        display: none;
+    }
 }
 #house_article_xq {
     .banner {
         position: relative;
+        height: 1.78rem;
         
         img {}
         .intro {
@@ -1149,8 +1160,8 @@ body.no-scroll {
             }
         }
         .price {
-            line-height: 2.2;
-            @include f_sm();
+            line-height: 2;
+            @include f_xs();
 
             span {
                 @include c_orange();
@@ -1199,9 +1210,9 @@ body.no-scroll {
         li {
             @include fl();
             margin: 0 .14rem .1rem 0;
-            @include button (.15rem, .2rem, #333333, #ffffff);
+            @include button (.15rem, .16rem, #333333, #ffffff);
             @include br_md();
-            @include f_sm();
+            @include f_xs();
             &.cur {
                 color: #fff;
                 background-color: #ff5849;
@@ -1240,7 +1251,9 @@ body.no-scroll {
             line-height: 2;
             padding-left: .1rem;
             
-            .t {}
+            .t {
+                @include t_hide();
+            }
             .area {
                 @include c_light();
             }
@@ -1270,9 +1283,9 @@ body.no-scroll {
         li {
             @include fl();
             margin: 0 .14rem .1rem 0;
-            @include button (.15rem, .2rem, #333333, #ffffff);
+            @include button (.15rem, .16rem, #333333, #ffffff);
             @include br_md();
-            @include f_sm();
+            @include f_xs();
             &.cur {
                 color: #fff;
                 background-color: #ff5849;
@@ -1306,6 +1319,7 @@ body.no-scroll {
             text-align: center;
             line-height: 1.6;
             @include f_sm();
+            @include t_hide();
         }
     }
 }

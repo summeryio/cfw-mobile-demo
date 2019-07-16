@@ -1,0 +1,51 @@
+<div class="m_signUp_box" style="height: 667px;">
+    <div class="m_form submit_area">
+        <input type="hidden" name="id" value="">
+        <input type="hidden" name="k_name" value="">
+
+        <div class="m_form_title">
+            <span class="UpTitle"></span>
+            <p></p>
+        </div>
+
+        <div class="m_form_input c">
+            <i class="iconfont icon-phone1"></i>
+            <input name="mobile" type="text" placeholder="您的手机号码" class="Uptel">
+        </div>
+        <input type="button" value="获取通知" class="m_button Upbtn">
+    </div>
+    <div class="m_close">
+        <i class="iconfont icon-close"></i>
+    </div>
+</div>
+    
+    
+<script>
+    $(function(){
+        // 修改页面适应样式
+        var _height = $(window).height(); 
+        var _h2 = $('.m_form').height();
+        _h2 = Math.floor(_height/4);
+        $('.m_signUp_box').css('height',_height);
+        $('.m_signUp1_box').css('height',_height);
+        $('.m_form').css('margin-top',+_h2+'px');
+    
+    
+        // 修改弹窗信息
+        $('.m_form_title span').html(signup_title);
+        $('.m_form_title p').html(signup_text);
+
+        if (signup_buttom) {
+            $('.m_form input[type="button"]').val(signup_buttom);
+        }else{
+            $('.m_form input[type="button"]').val('提交');
+        }
+
+        // 删除
+        $('.m_close').on('click',function(){
+            $('body').removeClass('no-scroll')
+            $("#InDiv").hide();
+        })
+    
+    })
+</script>

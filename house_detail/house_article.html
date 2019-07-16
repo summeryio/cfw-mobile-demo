@@ -27,7 +27,7 @@
                             if($valaa['id']==$rows['typeid']){echo  $valaa['title'];break;}                                            
                         }?>
                     </span>
-                    <span class="get"><i class="iconfont icon-tongzhi2"></i>获取销控表</span>
+                    <span class="get showing_dialog" data-id="<?=$rows['id']?>" data-name="获取销控表" data-text="掌控项目一手销控信息<br/>把握最佳购房时机。"><i class="iconfont icon-tongzhi2"></i>获取销控表</span>
                 </div>
                 <p class="price">
                     <span><?=($rows['price']==0?'待定' : '¥'.$rows['price'].'元/㎡')?></span>
@@ -59,16 +59,22 @@
                     <a href="tel:<?=Tels::wap($rows['phone'])?>" onclick="submitPhone(2, '<?=$rows['wap_phone']?>', '楼盘顶部：')"><i class="iconfont icon-phone"></i></a>
                 </div>
                 <div class="row pop">
-                    <div class="col-xs-6"><i class="iconfont icon-gupiao"></i><span>降价通知</span></div>
-                    <div class="col-xs-6"><i class="iconfont icon-tongzhi2" style="font-size: .3rem;"></i><span>报名看房</span></div>
+                    <div class="col-xs-6 showing_dialog" data-id="<?=$rows['id']?>" data-name="降价通知" data-text="及时掌握楼盘实时降价信息<br/>帮您找准买房最佳时机！">
+                        <i class="iconfont icon-gupiao"></i>
+                        <span>降价通知</span>
+                    </div>
+                    <div class="col-xs-6 showing_dialog" data-id="<?=$rows['id']?>" data-name="报名看房" data-text="全天候贴心服务，专车接送，免费餐饮住宿<br/>专业带看解答疑惑；看房活动优惠多多">
+                        <i class="iconfont icon-tongzhi2" style="font-size: .3rem;"></i>
+                        <span>报名看房</span>
+                    </div>
                 </div>
             </div>
-            <div class="card card-tuangou">
+            <div class="card card-tuangou showing_dialog" data-id="<?=$rows['id']?>" data-name="申请团购" data-text="全天候贴心服务，专车接送，免费餐饮住宿<br/>专业带看解答疑惑；看房活动优惠多多">
                 <p class="btn">申请团购</p>
                 <span>已有<em>198</em>人加入团购</span>
                 <p>点击参加 <i class="iconfont icon-right"></i></p>
             </div>
-            <div class="card card-hx" id="anchor">
+            <div class="card card-hx" id="anchor"><!-- anchor是点击动态导航跳转的锚点 -->
                 <div class="title row">
                     <h5 class="col-xs-3">主力户型</h5>
                     <div class="wrap col-xs-9">
@@ -87,34 +93,43 @@
                     if(count($huxing)>0){
                     foreach($huxing as $key=>$val){?>
                     <li class="<?=($key==0?'cur':'')?>" img-changed="<?=($key==0?'null':'false')?>">
-                        <div class="wrapper">
+                        <div class="wrapper photo-gallery" data-pswp-uid="<?=($key + 1)?>">
                             <?php           
                                 if(count($val['data'])>0){
                                 foreach($val['data'] as $k=>$vs){
                             ?>
-                            <div class="item">
-                                <?php           
-                                    if($key == 0){
-                                        echo '<img class="first-img" src="/tpl/wap2020/images/img_default.png" data-substitute="'.WebFun::OssPic($vs['pic']).'" onerror="loadIMGErr(this)">';
-                                    } else {
-                                        echo '<img class="sub-img" src="/tpl/wap2020/images/img_default.png" data-substitute="'.WebFun::OssPic($vs['pic']).'" onerror="loadIMGErr(this)">';
-                                    }
-                                ?>
+                            <figure class="item">
+                                <div class="pic">
+                                    <a href="<?= WebFun::OssPic($vs['pic']) ?>" data-size="900x600">
+                                    <?php           
+                                        if($key == 0){
+                                            echo '<img class="first-img" src="/tpl/wap2020/images/img_default.png" data-substitute="'.WebFun::OssPic($vs['pic']).'" onerror="loadIMGErr(this)">';
+                                        } else {
+                                            echo '<img class="sub-img" src="/tpl/wap2020/images/img_default.png" data-substitute="'.WebFun::OssPic($vs['pic']).'" onerror="loadIMGErr(this)">';
+                                        }
+                                    ?>
+                                    </a>
+                                </div>
                                 
                                 <div class="intro">
                                     <div class="specific">
                                         <span><?=$vs['title']?></span>
-                                        <button>获取底价</button>
+                                        <button 
+                                            class="showing_dialog" 
+                                            data-id="<?=$rows['id']?>" 
+                                            data-name="获取底价" 
+                                            data-text="免费获取房源底价清单；<br/>优质房源、真实价格、省心省力。"
+                                        >获取底价</button>
                                     </div>
                                     <div class="area"><span>(建筑面积)</span><?=$vs['area']?>㎡</div>
                                 </div>
-                            </div>
+                            </figure>
                             <?php }}?>
                         </div>
                     </li>
                     <?php }}?>
                 </ul>
-                <a href="/house/27-hx.html" class="more">更多户型</a>
+                <a href="/house/<?=$rows['id']?>-hx.html?navid=2" class="more">更多户型</a>
             </div>
             <div class="card card-dynamic">
                 <div class="t">
@@ -148,7 +163,7 @@
                         }
                     ?>
                 </ul>
-                <button class="subscribe">订阅动态</button>
+                <button class="subscribe showing_dialog" data-id="<?=$rows['id']?>" data-name="订阅动态" data-text="足不出户便可了解实时房价、全新户型、优惠信息、楼盘快讯、团购详情">订阅动态</button>
             </div>
             <div class="card-gg">
                 <img class="lazy" src=""  data-original="/tpl/wap2019/house_detail/icon/images/house_gg.jpg">
@@ -272,19 +287,14 @@
             </div>
         </div>
         <?php require('/tpl/wap2020/house_detail/temp/process.html');?>
-        <?php require('/tpl/wap2020/template/footer.html');?>
     </div>
 
     
     <?php require('/tpl/wap2020/template/script.html');?>
 
 
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=HdWz2uRUeXdTGsdtWkG9Fv23Np90Ynjc"></script>
+    
     <script>
-        // 户型默认那里，横向滚动时图片没有
-        // 导航弹框图片优化
-        
-        
         function initialMap() {
             //获取地图定位start
             var maps = document.querySelector("#houseDetail_map").getAttribute("data-maps");
@@ -440,7 +450,7 @@
                         $(item).attr('src', img_url)
                     })
                 }
-            })()
+            })();
             
             // 楼盘切换 && 刷新
             ;(function () {
@@ -472,7 +482,7 @@
                 var page2=2;
                 var page3=2;
 
-                $("#refresh_house").click(function () {	
+                $("#refresh_house").click(function () {
                     if(index==0){
                         $.get("/src/inc/get_house_other.php",{'t':'hot','pages':page1,'id':id}, function(result){
                             $house_list.eq(index).html(result)
@@ -489,22 +499,24 @@
                         $.get("/src/inc/get_house_other.php",{'t':'hot','pages':page3,'id':id}, function(result){
                             $house_list.eq(index).html(result)
 
-                            /* $card_recomment.find(".list li.cur img.lazy").lazyload({
-                                threshold :0
-                            }); */
-
                             if(page3>4){page3=1;}else{page3=page3+1;}
                         });
                     }
-
-                    
                 })
-            })()
-
+            })();
             
-            initialMap() // 初始化地图
         })
+
+        // 地图文件
+        window.onload = function () {
+            util.getScript('http://api.map.baidu.com/getscript?v=2.0&ak=HdWz2uRUeXdTGsdtWkG9Fv23Np90Ynjc&services=&t=20190622163250', function () {
+                initialMap()
+            })
+        }
     </script>
+
+
+    <?php require('/tpl/wap2020/house_detail/temp/photoswipe.html');?>
 
 </body>
 
